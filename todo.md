@@ -57,3 +57,11 @@
 - [x] Autoriser le scroll uniquement dans le panneau de droite.
 - [x] Préserver un comportement naturel sur mobile.
 - [x] Tester l’inscription et enregistrer un checkpoint.
+
+## Refonte de La sélection
+
+- [x] Auditer les problèmes de structure et de style sur `/selection`.
+- [x] Rééquilibrer l’en-tête, les filtres et la grille des biens.
+- [x] Harmoniser les médias et les fiches détaillées avec l’accueil.
+- [x] Corriger le responsive et valider les états interactifs.
+- [x] Enregistrer un checkpoint livrable.

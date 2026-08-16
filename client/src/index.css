@@ -180,3 +180,60 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .auth-success h1 { margin-top: 10px; }
 .auth-success > p:not(.eyebrow) { color: var(--muted); font-size: 12px; line-height: 1.8; margin: 25px auto; max-width: 360px; }
 @media (max-width: 760px) { .auth-page { height: auto; min-height: 100dvh; overflow: visible; display: block; } .auth-image { height: 300px; min-height: 300px; } .auth-image-caption { bottom: 32px; left: 24px; } .auth-image-caption p { font-size: 43px; } .auth-panel { height: auto; min-height: 650px; overflow: visible; padding: 25px 22px 50px; } .auth-content { margin: 55px auto 0; } }
+
+/* Sélection Kaba : catalogue éditorial, grille respirante et médias cadrés comme des planches de magazine. */
+.selection-page { min-height: 100vh; background: var(--paper); color: var(--ink); }
+.selection-hero { min-height: 430px; padding: 34px clamp(24px, 8vw, 120px) 72px; color: white; position: relative; background: linear-gradient(90deg, rgba(10,25,20,.82), rgba(10,25,20,.18)), url('/manus-storage/kaba-hero-dakar_28cefd79.jpg') center 56% / cover; }
+.selection-hero-top { display: flex; justify-content: space-between; align-items: center; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+.back-link { font: 26px "DM Serif Display", serif; letter-spacing: -.04em; text-transform: none; color: white; }
+.selection-hero-copy { margin-top: 75px; max-width: 700px; }
+.selection-hero-copy .eyebrow { color: rgba(255,255,255,.72); }
+.selection-hero-copy h1 { font: clamp(65px, 8vw, 112px)/.88 "DM Serif Display", serif; letter-spacing: -.05em; margin: 0; }
+.selection-hero-copy h1 em { color: var(--brass); }
+.selection-hero-copy > p:last-child { max-width: 360px; color: rgba(255,255,255,.72); font-size: 12px; line-height: 1.8; margin: 27px 0 0; }
+.selection-catalogue { padding: 112px clamp(24px, 8vw, 120px) 130px; }
+.catalogue-top { display: flex; justify-content: space-between; align-items: end; gap: 50px; margin-bottom: 60px; }
+.catalogue-top h2 { font-size: clamp(56px, 7vw, 88px); }
+.catalogue-note { max-width: 300px; color: var(--muted); font-size: 12px; line-height: 1.8; margin: 0 0 8px; }
+.catalogue-filters { display: flex; justify-content: space-between; align-items: center; gap: 25px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 17px 0; }
+.filter-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
+.filter-tabs button { border: 1px solid var(--line); background: transparent; color: var(--muted); padding: 10px 14px; font-size: 10px; transition: .2s ease; }
+.filter-tabs button:hover, .filter-tabs button.is-active { border-color: var(--green); background: var(--green); color: white; }
+.catalogue-filters label { min-width: 190px; position: relative; display: flex; align-items: center; gap: 13px; border-bottom: 1px solid var(--green); padding: 0 0 9px; }
+.catalogue-filters label span { color: var(--muted); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.catalogue-filters select { appearance: none; border: 0; background: transparent; color: var(--green); outline: none; font-size: 11px; padding-right: 20px; }
+.catalogue-filters label svg { position: absolute; right: 0; color: var(--brass); pointer-events: none; }
+.catalogue-count { color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; padding: 25px 0 32px; }
+.catalogue-count span { color: var(--brass); padding: 0 7px; }
+.catalogue-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 70px clamp(28px, 6vw, 86px); }
+.catalogue-card:nth-child(even) { margin-top: 90px; }
+.catalogue-media { height: 460px; position: relative; overflow: hidden; background: var(--sand); border: 7px solid #e8e1d6; box-shadow: 0 12px 30px rgba(28,38,33,.08); }
+.catalogue-card:nth-child(even) .catalogue-media { height: 390px; transform: rotate(.35deg); }
+.catalogue-media img, .catalogue-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.catalogue-media.is-video video { background: var(--ink); }
+.catalogue-number { position: absolute; right: 18px; top: 16px; color: white; font: 24px "DM Serif Display", serif; }
+.catalogue-media-count { position: absolute; left: 18px; bottom: 18px; color: white; font-size: 8px; font-weight: 800; letter-spacing: .16em; }
+.catalogue-controls { position: absolute; right: 16px; bottom: 14px; display: flex; gap: 5px; }
+.catalogue-controls button { width: 35px; height: 35px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.65); background: rgba(24,59,48,.6); color: white; }
+.catalogue-details { padding: 18px 7px 0; }
+.catalogue-meta { display: flex; justify-content: space-between; gap: 20px; color: var(--muted); font-size: 9px; letter-spacing: .12em; text-transform: uppercase; }
+.catalogue-meta span:last-child { color: var(--brass); font-weight: 800; }
+.catalogue-details h3 { max-width: 390px; font: 32px/1 "DM Serif Display", serif; margin: 14px 0 9px; }
+.catalogue-details p { color: var(--muted); font-size: 11px; margin: 0; }
+.catalogue-details strong { display: block; color: var(--green); font-size: 11px; margin-top: 13px; }
+.detail-link { display: inline-flex; align-items: center; gap: 8px; border: 0; border-bottom: 1px solid var(--green); background: transparent; color: var(--green); padding: 9px 0 7px; margin-top: 17px; font-size: 10px; font-weight: 800; }
+.catalogue-empty { padding: 50px 0; color: var(--muted); font-size: 13px; }
+.selection-footer { padding: 25px clamp(24px, 8vw, 120px); background: var(--ink); color: white; display: flex; justify-content: space-between; gap: 20px; font-size: 10px; }
+.selection-footer a { display: inline-flex; gap: 8px; align-items: center; color: var(--brass); }
+.selection-footer span { color: rgba(255,255,255,.42); }
+.detail-overlay { position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 30px; background: rgba(15,26,21,.72); }
+.detail-panel { width: min(900px, 100%); max-height: min(700px, 90vh); overflow: auto; background: var(--paper); display: grid; grid-template-columns: 1fr 1fr; position: relative; box-shadow: 0 25px 80px rgba(0,0,0,.25); }
+.detail-panel > img { width: 100%; height: 100%; min-height: 470px; object-fit: cover; }
+.detail-panel-copy { padding: 60px 48px; align-self: center; }
+.detail-panel-copy h2 { color: var(--green); font-size: clamp(42px, 5vw, 64px); }
+.detail-location { color: var(--muted); font-size: 11px; margin-top: 20px; }
+.detail-description { color: var(--muted); font-size: 12px; line-height: 1.8; margin: 30px 0 18px; }
+.detail-panel-copy > strong { color: var(--green); font-size: 12px; }
+.detail-panel-copy .contact-button { margin-top: 28px; }
+.detail-close { position: absolute; z-index: 2; right: 16px; top: 16px; width: 35px; height: 35px; border: 1px solid rgba(255,255,255,.75); background: rgba(24,59,48,.75); color: white; display: grid; place-items: center; }
+@media (max-width: 700px) { .selection-hero { min-height: 390px; padding: 25px 22px 55px; } .selection-hero-copy { margin-top: 70px; } .selection-hero-copy h1 { font-size: 66px; } .selection-catalogue { padding: 78px 22px 90px; } .catalogue-top { display: block; margin-bottom: 40px; } .catalogue-note { margin-top: 25px; } .catalogue-filters { align-items: stretch; flex-direction: column; } .catalogue-filters label { width: 100%; } .catalogue-grid { grid-template-columns: 1fr; gap: 52px; } .catalogue-card:nth-child(even) { margin-top: 0; } .catalogue-media, .catalogue-card:nth-child(even) .catalogue-media { height: 360px; transform: none; } .catalogue-details h3 { font-size: 29px; } .selection-footer { flex-direction: column; } .detail-overlay { padding: 16px; } .detail-panel { display: block; max-height: 92vh; } .detail-panel > img { height: 260px; min-height: 0; } .detail-panel-copy { padding: 35px 24px 42px; } }
