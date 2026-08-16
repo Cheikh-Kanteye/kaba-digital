@@ -28,3 +28,19 @@
 
 - [x] Fixer le header en haut avec `position: sticky` et `top: 0`.
 - [x] Vérifier le contraste et la superposition pendant le défilement.
+
+## Page complète La sélection
+
+- [ ] Ajouter une route dédiée `/selection` et son en-tête éditorial.
+- [ ] Ajouter les filtres vente/location et catégories de biens.
+- [ ] Afficher les propriétés avec galerie images/vidéo et métadonnées.
+- [ ] Ajouter une vue détaillée accessible depuis chaque propriété.
+- [ ] Tester la navigation, le responsive et enregistrer un checkpoint.
+
+## Accès membres Kaba
+
+- [x] Ajouter les routes inscription et connexion.
+- [x] Ajouter le choix Agent immobilier / Courtier.
+- [x] Afficher les champs de vérification pour les agents.
+- [x] Ajouter les états de formulaire et les messages de confirmation.
+- [x] Vérifier le responsive et enregistrer un checkpoint.

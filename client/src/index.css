@@ -139,3 +139,43 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 @media (max-width: 850px) { .site-header { height: 70px; gap: 18px; } .header-place { display: none; } .main-nav { display: none; position: absolute; top: 70px; left: 0; right: 0; background: var(--paper); padding: 22px; border-bottom: 1px solid var(--line); flex-direction: column; gap: 18px; } .main-nav.is-open { display: flex; } .header-actions { margin-left: auto; } .text-link { display: none; } .menu-toggle { display: block; } .hero { min-height: 650px; } .hero-copy { width: 88%; margin-left: 8vw; } .search-band { grid-template-columns: 50px 1fr; } .search-form { grid-column: 2; } .section-kicker { font-size: 8px; } .property-grid { grid-template-columns: 1fr 1fr; } .property-card:first-child { grid-row: span 2; } .property-card:nth-child(2), .property-card:nth-child(3) { margin-top: 0; } .property-card:first-child .property-image-wrap { height: 480px; } .property-card:nth-child(2) .property-image-wrap, .property-card:nth-child(3) .property-image-wrap { height: 245px; transform: none; } .approach-section { grid-template-columns: 50px 1fr; } .approach-stamp { position: absolute; right: 10vw; bottom: 50px; transform: scale(.78) rotate(-12deg); } .services-section { grid-template-columns: 1fr; gap: 60px; } }
 @media (max-width: 560px) { .hero h1 { font-size: 61px; } .hero-intro { font-size: 12px; } .hero-meta { font-size: 8px; } .hero-meta > span:last-child { display: none; } .search-band { display: block; padding-top: 74px; } .section-kicker { writing-mode: initial; transform: none; margin-bottom: 35px; } .search-form { margin-top: 38px; display: block; } .search-form label { margin-bottom: 24px; } .search-button { width: 100%; justify-content: center; margin-top: 5px; } .selection-section, .services-section { padding-top: 85px; padding-bottom: 90px; } .section-heading { display: block; margin-bottom: 45px; } .section-note { margin-top: 27px; } .property-grid { grid-template-columns: 1fr; gap: 45px; } .property-card:first-child { grid-row: auto; } .property-card:first-child .property-image-wrap, .property-card:nth-child(2) .property-image-wrap, .property-card:nth-child(3) .property-image-wrap { height: 340px; transform: none; } .property-card:nth-child(2), .property-card:nth-child(3) { margin-top: 0; } .outline-button { margin-top: 50px; } .selection-feedback { display: block; margin: 15px 0 0; line-height: 1.6; } .approach-section { display: block; padding-top: 75px; min-height: 675px; } .approach-marker { flex-direction: row; margin-bottom: 55px; } .approach-content > p:not(.eyebrow) { margin-top: 30px; } .services-list { margin-top: 0; } .service-row { grid-template-columns: 30px 1fr 20px; gap: 12px; } .service-row p { grid-column: 2 / -1; margin-top: 5px; } .contact-section { display: block; padding-top: 77px; padding-bottom: 80px; } .contact-button { margin-top: 38px; } .site-footer { grid-template-columns: 1fr 1fr; padding-top: 62px; } .footer-brand { grid-column: 1 / -1; } .footer-bottom { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
+
+/* Auth Kaba : parcours professionnel sobre, formulaire clair et détails de confiance. */
+.auth-page { min-height: 100vh; display: grid; grid-template-columns: 1.12fr .88fr; background: var(--paper); }
+.auth-image { min-height: 100vh; position: relative; background: url('/manus-storage/kaba-hero-dakar_28cefd79.jpg') center / cover; color: white; overflow: hidden; }
+.auth-image-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,25,20,.68), rgba(10,25,20,.08)); }
+.auth-brand { position: absolute; top: 35px; left: clamp(24px, 5vw, 76px); z-index: 1; display: flex; align-items: center; gap: 11px; font: 28px "DM Serif Display", serif; }
+.auth-mark { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--brass); color: var(--brass); font-size: 19px; }
+.auth-image-caption { position: absolute; left: clamp(24px, 8vw, 120px); bottom: 68px; z-index: 1; }
+.auth-image-caption span { font-size: 9px; letter-spacing: .18em; color: rgba(255,255,255,.62); }
+.auth-image-caption p { font: clamp(42px, 5vw, 72px)/.92 "DM Serif Display", serif; margin: 25px 0 0; }
+.auth-image-caption em { color: var(--brass); }
+.auth-panel { padding: 34px clamp(24px, 6vw, 88px); display: flex; flex-direction: column; }
+.auth-back { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 10px; }
+.auth-back:hover { color: var(--green); }
+.auth-content { width: min(430px, 100%); margin: auto; }
+.auth-content h1 { color: var(--green); font: clamp(46px, 5vw, 68px)/.95 "DM Serif Display", serif; letter-spacing: -.04em; margin: 0; }
+.auth-intro { color: var(--muted); font-size: 12px; line-height: 1.75; max-width: 340px; margin: 22px 0 32px; }
+.auth-form { display: flex; flex-direction: column; gap: 17px; }
+.auth-form label { color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; display: flex; flex-direction: column; gap: 8px; }
+.auth-form input { width: 100%; background: #fff; border: 1px solid var(--line); color: var(--ink); outline: 0; padding: 14px 13px; font-size: 12px; letter-spacing: normal; text-transform: none; transition: border .2s ease, box-shadow .2s ease; }
+.auth-form input:focus { border-color: var(--green); box-shadow: 0 0 0 3px rgba(30,70,56,.09); }
+.password-field { position: relative; }
+.password-field button { position: absolute; right: 12px; top: 12px; border: 0; background: transparent; color: var(--muted); padding: 2px; }
+.profile-choice { display: flex; flex-direction: column; gap: 10px; color: var(--muted); font-size: 9px; letter-spacing: .1em; text-transform: uppercase; }
+.profile-choice > div { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.profile-choice button { border: 1px solid var(--line); background: transparent; color: var(--muted); display: flex; align-items: center; justify-content: space-between; padding: 12px; font-size: 10px; text-align: left; }
+.profile-choice button.is-selected { border-color: var(--green); background: var(--green); color: white; }
+.verification-fields { border-left: 2px solid var(--brass); padding-left: 14px; display: flex; flex-direction: column; gap: 14px; }
+.verification-fields > p { color: var(--green); font-size: 11px; font-weight: 800; margin: 0; }
+.verification-fields > p span { color: var(--muted); font-weight: 400; font-size: 9px; }
+.auth-button { margin-top: 6px; border: 1px solid var(--green); background: var(--green); color: white; padding: 15px 18px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; font-size: 11px; font-weight: 800; transition: background .2s ease, transform .16s ease; }
+.auth-button:hover { background: #285947; }
+.auth-button:active { transform: scale(.98); }
+.auth-switch { color: var(--muted); font-size: 11px; text-align: center; margin: 20px 0 0; }
+.auth-switch a { color: var(--green); text-decoration: underline; text-underline-offset: 3px; }
+.auth-success { text-align: center; }
+.success-mark { width: 50px; height: 50px; margin: 0 auto 25px; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: white; }
+.auth-success h1 { margin-top: 10px; }
+.auth-success > p:not(.eyebrow) { color: var(--muted); font-size: 12px; line-height: 1.8; margin: 25px auto; max-width: 360px; }
+@media (max-width: 760px) { .auth-page { display: block; } .auth-image { min-height: 300px; } .auth-image-caption { bottom: 32px; left: 24px; } .auth-image-caption p { font-size: 43px; } .auth-panel { min-height: 650px; padding: 25px 22px 50px; } .auth-content { margin: 55px auto 0; } }

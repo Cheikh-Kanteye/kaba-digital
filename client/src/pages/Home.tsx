@@ -79,13 +79,13 @@ export default function Home() {
         </a>
         <div className="header-place">DAKAR <span>/</span> SÉNÉGAL</div>
         <nav className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label="Navigation principale">
-          <a href="#selection" onClick={() => setMenuOpen(false)}>La sélection</a>
+          <a href="/selection" onClick={() => setMenuOpen(false)}>La sélection</a>
           <a href="#approche" onClick={() => setMenuOpen(false)}>Notre approche</a>
           <a href="#services" onClick={() => setMenuOpen(false)}>Services</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>Parlons-nous</a>
         </nav>
         <div className="header-actions">
-          <a className="text-link" href="#contact">Déposer un bien <ArrowUpRight size={15} /></a>
+          <a className="text-link" href="/login">Accès membre <ArrowUpRight size={15} /></a><a className="text-link" href="/selection">Déposer un bien <ArrowUpRight size={15} /></a>
           <button className="menu-toggle" aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"} onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={21} /> : <Menu size={21} />}
           </button>
@@ -99,7 +99,7 @@ export default function Home() {
           <p className="eyebrow light"><span>01</span> La sélection Kaba</p>
           <h1>Des adresses<br /><em>qui restent.</em></h1>
           <p className="hero-intro">Une nouvelle manière de regarder l’immobilier au Sénégal. Des lieux choisis avec attention, pour les vies qui s’y inventent.</p>
-          <a className="hero-link" href="#selection">Explorer la sélection <ArrowUpRight size={17} /></a>
+          <a className="hero-link" href="/selection">Explorer la sélection <ArrowUpRight size={17} /></a>
         </div>
         <div className="hero-meta"><span>© 2026 KABA</span><span>SCROLL TO DISCOVER <span className="scroll-line" /></span></div>
       </section>
@@ -152,7 +152,7 @@ export default function Home() {
 
       <section className="contact-section" id="contact"><div><p className="eyebrow light"><span>06</span> Parlons de votre prochain lieu</p><h2>Une adresse en tête ?<br /><em>Commençons ici.</em></h2></div><a className="contact-button" href="mailto:kaba@gmail.com">Prendre contact <ArrowUpRight size={18} /></a></section>
 
-      <footer className="site-footer"><div className="footer-brand"><img src={monogram} alt="" /><span>Kaba</span><p>L’immobilier, regardé autrement.<br />Dakar · Sénégal</p></div><div className="footer-column"><p className="footer-label">Explorer</p><a href="#selection">La sélection</a><a href="#approche">Notre approche</a><a href="#services">Services</a></div><div className="footer-column"><p className="footer-label">Contact</p><a href="mailto:kaba@gmail.com">kaba@gmail.com</a><a href="tel:+221766418810">+221 76 641 88 10</a><a href="#contact">Instagram ↗</a></div><div className="footer-bottom"><span>© 2026 Kaba, Inc.</span><span>Cité Fadia, Dakar</span><span>Mentions légales</span><span>Données personnelles</span></div></footer>
+      <footer className="site-footer"><div className="footer-brand"><img src={monogram} alt="" /><span>Kaba</span><p>L’immobilier, regardé autrement.<br />Dakar · Sénégal</p></div><div className="footer-column"><p className="footer-label">Explorer</p><a href="/selection">La sélection</a><a href="#approche">Notre approche</a><a href="#services">Services</a></div><div className="footer-column"><p className="footer-label">Contact</p><a href="mailto:kaba@gmail.com">kaba@gmail.com</a><a href="tel:+221766418810">+221 76 641 88 10</a><a href="#contact">Instagram ↗</a></div><div className="footer-bottom"><span>© 2026 Kaba, Inc.</span><span>Cité Fadia, Dakar</span><span>Mentions légales</span><span>Données personnelles</span></div></footer>
       <button className="floating-filter" aria-label="Ouvrir les filtres"><SlidersHorizontal size={16} /> Filtres</button>
     </main>
   );
