@@ -13,7 +13,7 @@ button, input, select { font: inherit; }
 button { cursor: pointer; }
 
 .kaba-site { overflow: hidden; background: var(--paper); }
-.site-header { height: 82px; padding: 0 clamp(22px, 5vw, 82px); display: flex; align-items: center; gap: 46px; background: var(--paper); position: relative; z-index: 10; border-bottom: 1px solid var(--line); }
+.site-header { height: 82px; padding: 0 clamp(22px, 5vw, 82px); display: flex; align-items: center; gap: 46px; background: var(--paper); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--line); box-shadow: 0 4px 18px rgba(28,38,33,.06); }
 .brand, .footer-brand { display: inline-flex; align-items: center; gap: 11px; font-family: "DM Serif Display", serif; font-size: 28px; letter-spacing: -.04em; }
 .brand img, .footer-brand img { width: 30px; height: 30px; object-fit: contain; }
 .header-place { color: var(--muted); font-size: 9px; letter-spacing: .16em; font-weight: 700; }
@@ -43,6 +43,12 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .hero-meta > span:last-child { display: flex; align-items: center; gap: 12px; }
 .scroll-line { height: 1px; width: 42px; background: var(--brass); display: inline-block; }
 
+.senegal-transition { height: 10px; display: grid; grid-template-columns: 1fr 1fr 1fr; position: relative; z-index: 2; box-shadow: 0 5px 18px rgba(28,38,33,.12); }
+.senegal-transition span { display: block; }
+.senegal-green { background: #1e4638; }
+.senegal-yellow { background: #f2c94c; display: grid !important; place-items: center; }
+.senegal-yellow i { width: 12px; height: 12px; background: #1e4638; display: block; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 93%, 50% 71%, 21% 93%, 32% 57%, 2% 35%, 39% 35%); }
+.senegal-red { background: #d84c3f; }
 .search-band { padding: 90px clamp(22px, 9vw, 142px) 98px; display: grid; grid-template-columns: 110px .8fr 1.35fr; gap: 35px; background: var(--deep); color: white; }
 .section-kicker { display: flex; gap: 13px; font-size: 9px; letter-spacing: .17em; text-transform: uppercase; color: rgba(255,255,255,.64); writing-mode: vertical-rl; transform: rotate(180deg); align-self: start; }
 .search-copy h2 { font-size: clamp(42px, 5vw, 68px); }

@@ -104,6 +104,8 @@ export default function Home() {
         <div className="hero-meta"><span>© 2026 KABA</span><span>SCROLL TO DISCOVER <span className="scroll-line" /></span></div>
       </section>
 
+      <div className="senegal-transition" aria-hidden="true"><span className="senegal-green" /><span className="senegal-yellow"><i /></span><span className="senegal-red" /></div>
+
       <section className="search-band" aria-label="Rechercher un bien">
         <div className="section-kicker"><span>02</span><span>Votre recherche</span></div>
         <div className="search-copy"><h2>Commencer<br /><em>par un lieu.</em></h2><p>Quelques repères suffisent. Nous vous aiderons à trouver le reste.</p></div>
