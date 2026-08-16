@@ -50,3 +50,10 @@
 - [x] Regrouper les actions et éviter le débordement sur tablette.
 - [x] Conserver un menu compact et lisible sur mobile.
 - [x] Tester les breakpoints et enregistrer un checkpoint.
+
+## Hauteur fixe et scroll du formulaire
+
+- [x] Fixer la page d’accès à `100dvh` sur desktop.
+- [x] Autoriser le scroll uniquement dans le panneau de droite.
+- [x] Préserver un comportement naturel sur mobile.
+- [x] Tester l’inscription et enregistrer un checkpoint.

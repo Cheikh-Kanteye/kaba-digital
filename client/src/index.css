@@ -142,8 +142,8 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; } }
 
 /* Auth Kaba : parcours professionnel sobre, formulaire clair et détails de confiance. */
-.auth-page { min-height: 100vh; display: grid; grid-template-columns: 1.12fr .88fr; background: var(--paper); }
-.auth-image { min-height: 100vh; position: relative; background: url('/manus-storage/kaba-hero-dakar_28cefd79.jpg') center / cover; color: white; overflow: hidden; }
+.auth-page { height: 100dvh; min-height: 100dvh; overflow: hidden; display: grid; grid-template-columns: 1.12fr .88fr; background: var(--paper); }
+.auth-image { height: 100dvh; min-height: 0; position: relative; background: url('/manus-storage/kaba-hero-dakar_28cefd79.jpg') center / cover; color: white; overflow: hidden; }
 .auth-image-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,25,20,.68), rgba(10,25,20,.08)); }
 .auth-brand { position: absolute; top: 35px; left: clamp(24px, 5vw, 76px); z-index: 1; display: flex; align-items: center; gap: 11px; font: 28px "DM Serif Display", serif; }
 .auth-mark { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--brass); color: var(--brass); font-size: 19px; }
@@ -151,7 +151,7 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .auth-image-caption span { font-size: 9px; letter-spacing: .18em; color: rgba(255,255,255,.62); }
 .auth-image-caption p { font: clamp(42px, 5vw, 72px)/.92 "DM Serif Display", serif; margin: 25px 0 0; }
 .auth-image-caption em { color: var(--brass); }
-.auth-panel { padding: 34px clamp(24px, 6vw, 88px); display: flex; flex-direction: column; }
+.auth-panel { height: 100dvh; min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: var(--brass) transparent; padding: 34px clamp(24px, 6vw, 88px); display: flex; flex-direction: column; }
 .auth-back { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 10px; }
 .auth-back:hover { color: var(--green); }
 .auth-content { width: min(430px, 100%); margin: auto; }
@@ -179,4 +179,4 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .success-mark { width: 50px; height: 50px; margin: 0 auto 25px; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: white; }
 .auth-success h1 { margin-top: 10px; }
 .auth-success > p:not(.eyebrow) { color: var(--muted); font-size: 12px; line-height: 1.8; margin: 25px auto; max-width: 360px; }
-@media (max-width: 760px) { .auth-page { display: block; } .auth-image { min-height: 300px; } .auth-image-caption { bottom: 32px; left: 24px; } .auth-image-caption p { font-size: 43px; } .auth-panel { min-height: 650px; padding: 25px 22px 50px; } .auth-content { margin: 55px auto 0; } }
+@media (max-width: 760px) { .auth-page { height: auto; min-height: 100dvh; overflow: visible; display: block; } .auth-image { height: 300px; min-height: 300px; } .auth-image-caption { bottom: 32px; left: 24px; } .auth-image-caption p { font-size: 43px; } .auth-panel { height: auto; min-height: 650px; overflow: visible; padding: 25px 22px 50px; } .auth-content { margin: 55px auto 0; } }
