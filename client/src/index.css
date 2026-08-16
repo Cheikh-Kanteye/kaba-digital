@@ -51,8 +51,10 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .search-form label { flex: 1 1 180px; position: relative; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid rgba(255,255,255,.3); padding: 0 0 12px; }
 .search-form label span { color: rgba(255,255,255,.52); font-size: 9px; letter-spacing: .11em; text-transform: uppercase; }
 .search-form input, .search-form select { appearance: none; border: 0; outline: none; background: transparent; color: white; font-size: 13px; padding: 0; }
+.search-form select { color-scheme: light; color: #ffffff; }
 .search-form input::placeholder { color: rgba(255,255,255,.88); }
-.search-form select option { color: var(--ink); }
+.search-form select option { background: #f7f4ee; color: #1c2621; padding: 10px; }
+.search-form select option:checked, .search-form select option:hover { background: #ded6c8; color: #183b30; }
 .search-form label svg { position: absolute; right: 0; bottom: 15px; color: var(--brass); pointer-events: none; }
 .search-button { border: 1px solid var(--brass); background: var(--brass); color: #fff; display: inline-flex; gap: 9px; align-items: center; align-self: end; padding: 14px 21px; font-size: 11px; font-weight: 700; transition: background .2s ease, transform .16s ease; }
 .search-button:hover { background: #c09e68; }
