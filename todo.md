@@ -44,3 +44,9 @@
 - [x] Afficher les champs de vérification pour les agents.
 - [x] Ajouter les états de formulaire et les messages de confirmation.
 - [x] Vérifier le responsive et enregistrer un checkpoint.
+
+## Responsivité du header
+
+- [x] Regrouper les actions et éviter le débordement sur tablette.
+- [x] Conserver un menu compact et lisible sur mobile.
+- [x] Tester les breakpoints et enregistrer un checkpoint.
