@@ -3,7 +3,7 @@
 
 import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
-import { ArrowUpRight, ChevronDown, Menu, Search, SlidersHorizontal, X } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Menu, Pause, Play, Search, SlidersHorizontal, X } from "lucide-react";
 
 const heroImage = "/manus-storage/kaba-hero-dakar_28cefd79.jpg";
 const monogram = "/manus-storage/kaba-monogram_e6015d22.png";
@@ -17,6 +17,8 @@ const properties = [
     price: "110 000 000 FCFA",
     image: "/manus-storage/kaba-property-ngor_3d2ef10e.jpg",
     tag: "Sélection Kaba",
+    media: ["/manus-storage/kaba-property-ngor_3d2ef10e.jpg", heroImage, "/manus-storage/kaba-land-dakar_98970f8e.jpg"],
+    video: "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
   },
   {
     number: "02",
@@ -26,6 +28,8 @@ const properties = [
     price: "250 000 FCFA / mois",
     image: "/manus-storage/kaba-property-almadies_64bab9ed.jpg",
     tag: "À découvrir",
+    media: ["/manus-storage/kaba-property-almadies_64bab9ed.jpg", "/manus-storage/kaba-property-ngor_3d2ef10e.jpg", heroImage],
+    video: "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
   },
   {
     number: "03",
@@ -35,6 +39,8 @@ const properties = [
     price: "Sur demande",
     image: "/manus-storage/kaba-land-dakar_98970f8e.jpg",
     tag: "Projet & investissement",
+    media: ["/manus-storage/kaba-land-dakar_98970f8e.jpg", heroImage, "/manus-storage/kaba-property-ngor_3d2ef10e.jpg"],
+    video: "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
   },
 ];
 
@@ -50,6 +56,8 @@ export default function Home() {
   const [propertyType, setPropertyType] = useState("Tous les biens");
   const [showMore, setShowMore] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [activeMedia, setActiveMedia] = useState<Record<string, number>>({});
+  const [playingVideo, setPlayingVideo] = useState<string | null>(null);
 
   const resultLabel = useMemo(() => {
     if (!submitted) return "Explorer la sélection";
@@ -111,8 +119,20 @@ export default function Home() {
         <div className="property-grid">
           {properties.map((property) => (
             <article className="property-card" key={property.number}>
-              <div className="property-image-wrap"><img src={property.image} alt={property.title} /><span className="property-tag">{property.tag}</span><span className="property-number">{property.number}</span><button aria-label={`Voir ${property.title}`}><ArrowUpRight size={18} /></button></div>
-              <div className="property-details"><div className="property-caption"><span className="property-type">{property.type} <span>·</span> {property.location}</span><span className="property-seal">K / SÉLECTION</span></div><h3>{property.title}</h3><p className="property-price">{property.price}</p></div>
+              {(() => {
+                const mediaIndex = activeMedia[property.number] ?? 0;
+                const isVideo = mediaIndex === property.media.length;
+                const currentImage = property.media[mediaIndex] ?? property.media[0];
+                return <>
+                  <div className={`property-image-wrap ${isVideo ? "is-video" : ""}`}>
+                    {isVideo ? <video key={`${property.number}-video`} src={property.video} poster={property.image} controls playsInline muted autoPlay={playingVideo === property.number} onPlay={() => setPlayingVideo(property.number)} onPause={() => setPlayingVideo(null)} /> : <img src={currentImage} alt={`${property.title} — visuel ${mediaIndex + 1}`} />}
+                    <span className="property-tag">{property.tag}</span><span className="property-number">{property.number}</span>
+                    <span className="media-counter">{isVideo ? "FILM" : `${String(mediaIndex + 1).padStart(2, "0")} / ${String(property.media.length).padStart(2, "0")}`}</span>
+                    <div className="media-controls"><button aria-label="Visuel précédent" onClick={() => setActiveMedia((current) => ({ ...current, [property.number]: mediaIndex === 0 ? property.media.length : mediaIndex - 1 }))}><ArrowLeft size={15} /></button><button aria-label="Visuel suivant" onClick={() => setActiveMedia((current) => ({ ...current, [property.number]: mediaIndex === property.media.length ? 0 : mediaIndex + 1 }))}>{isVideo && playingVideo !== property.number ? <Play size={14} /> : isVideo ? <Pause size={14} /> : <ArrowRight size={15} />}</button></div>
+                  </div>
+                  <div className="property-details"><div className="property-caption"><span className="property-type">{property.type} <span>·</span> {property.location}</span><span className="property-seal">K / SÉLECTION</span></div><h3>{property.title}</h3><p className="property-price">{property.price}</p><p className="property-media-note">{property.media.length} images · 1 film de lieu</p></div>
+                </>;
+              })()}
             </article>
           ))}
         </div>
