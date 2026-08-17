@@ -250,3 +250,9 @@
 - [x] Vérifier tous les états dynamiques, le responsive, les tests et créer un checkpoint.
 
 - [x] Corriger le débordement horizontal du dashboard Agent/Courtier sur mobile après l’harmonisation visuelle.
+
+## Séparation des rubriques dashboard
+
+- [x] Garder la Vue d’ensemble limitée aux indicateurs et raccourcis essentiels.
+- [x] Déplacer les listes détaillées de biens vers Mes biens, les médias vers Médias et les demandes vers Demandes reçues.
+- [x] Vérifier les boutons de navigation, le responsive, les tests et créer un checkpoint.
