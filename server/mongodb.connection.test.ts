@@ -3,7 +3,7 @@ import { pingMongoDb, getMongoDb } from "./mongodb";
 import { ensureKabaIndexes, getKabaCollections } from "./mongodbCollections";
 
 describe("MongoDB configuration", () => {
-  it("connects with the configured server secret without exposing it", async () => {
+  it.skipIf(process.env.MONGODB_TEST_REQUIRED !== "true")("connects with the configured server secret without exposing it", async () => {
     const uri = process.env.MONGODB_URI;
     expect(uri).toBeTruthy();
     expect(uri).toMatch(/^mongodb\+srv:\/\//);
@@ -14,5 +14,5 @@ describe("MongoDB configuration", () => {
     const collections = await getKabaCollections(db);
     expect(collections.properties.collectionName).toBe("properties");
     await ensureKabaIndexes(db);
-  }, 10000);
+  }, 15000);
 });

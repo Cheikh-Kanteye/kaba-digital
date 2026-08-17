@@ -409,3 +409,14 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .hero-shade { z-index: 1; }
 .hero-copy, .hero-meta { z-index: 2; }
 @media (prefers-reduced-motion: reduce) { .hero-image video { display: none; } }
+
+/* Formulaire de demande relié aux biens publiés MongoDB. */
+.inquiry-form { display: grid; gap: .8rem; margin-top: 1.4rem; }
+.inquiry-form label { display: grid; gap: .35rem; color: var(--green); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+.inquiry-form input, .inquiry-form textarea { width: 100%; border: 1px solid rgba(23,63,50,.2); background: #fbf8f1; color: var(--green); padding: .75rem .8rem; font: inherit; letter-spacing: normal; text-transform: none; }
+.inquiry-form textarea { min-height: 5.5rem; resize: vertical; }
+.inquiry-form .contact-button { justify-content: center; border: 0; cursor: pointer; }
+.inquiry-form .contact-button:disabled { opacity: .55; cursor: wait; }
+
+.table-action { border: 1px solid var(--brass); background: transparent; color: var(--green); padding: .45rem .7rem; font-size: .68rem; font-weight: 800; }
+.table-action:hover { background: var(--brass); color: white; }

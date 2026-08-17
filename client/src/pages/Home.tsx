@@ -4,6 +4,7 @@
 import { useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Menu, Pause, Play, Search, SlidersHorizontal, X } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
 const heroImage = "/manus-storage/kaba-hero-dakar_28cefd79.jpg";
 const heroVideo = "/manus-storage/villa-background_cdfa3e9a.mp4";
@@ -93,6 +94,22 @@ export default function Home() {
   const [submitted, setSubmitted] = useState(false);
   const [activeMedia, setActiveMedia] = useState<Record<string, number>>({});
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
+  const publishedQuery = trpc.kaba.publishedProperties.useQuery({});
+  const featuredProperties = publishedQuery.data?.length ? publishedQuery.data.slice(0, 6).map((property, index) => {
+    const images = property.media.filter((item) => item.kind === "image").map((item) => item.url);
+    const firstImage = images[0] || heroImage;
+    return {
+      number: String(index + 1).padStart(2, "0"),
+      type: property.type,
+      title: property.title,
+      location: property.location,
+      price: property.priceLabel,
+      image: firstImage,
+      tag: "Sélection Kaba",
+      media: images.length ? images : [firstImage],
+      video: property.media.find((item) => item.kind === "video")?.url || heroVideo,
+    };
+  }) : [];
 
   const resultLabel = useMemo(() => {
     if (!submitted) return "Explorer la sélection";
@@ -152,8 +169,11 @@ export default function Home() {
 
       <section className="selection-section" id="selection">
         <div className="section-heading"><div><p className="eyebrow"><span>03</span> Le choix du moment</p><h2>La sélection<br /><em>Kaba.</em></h2></div><p className="section-note">Des biens singuliers, regardés au-delà de leur surface. Pour leur lumière, leur adresse et ce qu’ils rendent possible.</p></div>
+        {publishedQuery.isLoading && <div className="dashboard-empty">La sélection se charge…</div>}
+        {publishedQuery.isError && <div className="dashboard-empty">La sélection est momentanément indisponible. Réessayez dans quelques instants.</div>}
+        {!publishedQuery.isLoading && !publishedQuery.isError && featuredProperties.length === 0 && <div className="dashboard-empty">Aucune adresse publiée pour le moment.</div>}
         <div className="property-grid">
-          {properties.map((property) => (
+          {featuredProperties.map((property) => (
             <article className="property-card" key={property.number}>
               {(() => {
                 const mediaIndex = activeMedia[property.number] ?? 0;

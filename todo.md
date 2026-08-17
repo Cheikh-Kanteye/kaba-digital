@@ -161,3 +161,31 @@
 - [x] Relancer le ping MongoDB après confirmation de `0.0.0.0/0` et de l’IP active.
 - [x] Diagnostiquer une éventuelle erreur TLS persistante.
 - [x] Documenter le résultat sans exposer les identifiants.
+
+## Passage full-stack complet
+
+- [x] Définir les modèles MongoDB, rôles et règles d’accès.
+- [x] Remplacer l’authentification de démonstration par une session réelle.
+- [x] Connecter les utilisateurs et profils Agent immobilier / Courtier.
+- [x] Implémenter le CRUD réel des biens et médias.
+- [x] Persister les demandes de contact et leur statut.
+- [x] Connecter le dashboard aux données MongoDB.
+- [x] Connecter la sélection publique aux biens publiés.
+- [x] Ajouter les tests backend et les états de chargement/erreur frontend.
+- [x] Valider la sécurité, le build et créer les checkpoints finaux.
+
+## Corrections full-stack détectées
+
+- [x] Lire et afficher le profil Mongo complet Agent/Courtier dans le dashboard.
+- [x] Ajouter modifier/supprimer un bien dans le dashboard.
+- [x] Permettre plusieurs images par bien dans le formulaire dashboard.
+- [x] Supprimer les fallbacks de biens hardcodés et afficher les vrais états chargement/vide/erreur.
+- [x] Ajouter des tests Vitest ciblant les procédures Kaba principales.
+- [x] Revalider la sécurité, le build et le checkpoint final.
+
+
+- [x] Afficher les erreurs d’édition et de suppression dans le dashboard.
+- [x] Conditionner l’état vide de la sélection à l’absence de chargement ou d’erreur.
+
+- [x] Exécuter un build final de production.
+- [ ] Enregistrer le checkpoint final après validation.

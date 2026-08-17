@@ -7,8 +7,14 @@ export async function getMongoDb(): Promise<Db> {
   if (!uri) throw new Error("MONGODB_URI is not configured");
 
   if (!client) {
-    client = new MongoClient(uri, { serverSelectionTimeoutMS: 5000 });
-    await client.connect();
+    const nextClient = new MongoClient(uri, { serverSelectionTimeoutMS: 8000, connectTimeoutMS: 8000 });
+    try {
+      await nextClient.connect();
+      client = nextClient;
+    } catch (error) {
+      await nextClient.close().catch(() => undefined);
+      throw error;
+    }
   }
 
   return client.db();

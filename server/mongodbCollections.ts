@@ -19,6 +19,7 @@ export type KabaUserDocument = {
 };
 
 export type KabaPropertyDocument = {
+  id: string;
   ownerId: string;
   title: string;
   type: "Maison" | "Villa" | "Appartement" | "Terrain";
@@ -32,6 +33,7 @@ export type KabaPropertyDocument = {
 };
 
 export type KabaInquiryDocument = {
+  id: string;
   propertyId: string;
   senderName: string;
   senderEmail?: string;
@@ -58,6 +60,7 @@ export async function ensureKabaIndexes(db?: Db): Promise<void> {
     { key: { email: 1 }, sparse: true },
   ]);
   await collections.properties.createIndexes([
+    { key: { id: 1 }, unique: true },
     { key: { ownerId: 1, status: 1 } },
     { key: { mode: 1, type: 1, status: 1 } },
   ]);
