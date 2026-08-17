@@ -197,3 +197,36 @@
 ## Correction logo Auth
 
 - [x] Utiliser le logo carré Kaba avec coins arrondis sur la page Auth et créer un checkpoint après validation.
+
+## Google OAuth et profil obligatoire
+
+- [x] Abandonner Google OAuth à la demande ; conserver l’authentification locale sécurisée.
+- [x] Définir cheikhkanteye.contact@gmail.com comme admin côté serveur via l’authentification locale.
+- [x] Remplacer la complétion Google par le formulaire de profil intégré à l’inscription locale.
+- [x] Ajouter les tests et valider le parcours local, le build et le checkpoint.
+
+## Authentification locale admin
+
+- [x] Remplacer le login de démonstration/OAuth par une connexion locale avec hash de mot de passe et session sécurisée.
+- [x] Créer cheikhkanteye.contact@gmail.com avec le rôle admin et le mot de passe temporaire confirmé.
+- [x] Tester la connexion, le refus des identifiants invalides et le dashboard admin.
+- [x] Construire et enregistrer un checkpoint après validation.
+
+- [x] Créer la table SQL users manquante afin que les sessions locales puissent être hydratées par le middleware existant.
+- [x] Rejouer le seed admin et vérifier le login local après migration.
+
+- [x] Tester explicitement un mot de passe invalide et vérifier le refus utilisateur.
+- [x] Vérifier une session authentifiée admin jusqu’au dashboard.
+- [x] Enregistrer un checkpoint après validation finale de l’authentification locale.
+
+- [x] Persister tous les champs métier du profil local affichés dans le formulaire.
+- [x] Vérifier que la session locale admin ouvre bien le dashboard et que les champs métier sont récupérables.
+
+- [x] Retirer le champ PDF non pris en charge du formulaire d’inscription locale.
+- [x] Vérifier explicitement la récupération des champs métier via profile.me.
+
+- [x] Vérifier explicitement phone, city, rcNumber, ninea et agencyAddress via profile.me sur un compte local complet.
+- [x] Enregistrer le checkpoint final après cette vérification complète.
+
+- [x] Exécuter un test d’intégration sur un vrai compte local complet, puis nettoyer ou conserver uniquement les données nécessaires.
+- [x] Créer le checkpoint après cette validation d’intégration réelle.

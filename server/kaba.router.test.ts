@@ -60,6 +60,13 @@ describe("kabaRouter", () => {
     expect(collections.properties.deleteOne).toHaveBeenCalledWith({ id: created.id, ownerId: "7" });
   });
 
+  it("relit tous les champs métier d’un profil local complet", async () => {
+    collections.users.findOne.mockResolvedValue({ openId: "open-7", email: "agent@example.com", phone: "+221 77 000 00 00", city: "Dakar", rcNumber: "RC-123", ninea: "NINEA-456", agencyAddress: "Almadies" });
+    const caller = kabaRouter.createCaller(ctx as never);
+    const profile = await caller.profile.me();
+    expect(profile).toMatchObject({ phone: "+221 77 000 00 00", city: "Dakar", rcNumber: "RC-123", ninea: "NINEA-456", agencyAddress: "Almadies" });
+  });
+
   it("persiste une demande publique et permet à son propriétaire de changer son statut", async () => {
     const caller = kabaRouter.createCaller(ctx as never);
     const created = await caller.createInquiry({ propertyId: "property-1", senderName: "Mamadou Ba", senderEmail: "mamadou@example.com", message: "Je souhaite visiter." });
