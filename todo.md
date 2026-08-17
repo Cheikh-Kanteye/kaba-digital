@@ -133,3 +133,31 @@
 - [x] Téléverser la vidéo dans les assets web.
 - [x] L’utiliser en arrière-plan du hero avec fallback image et contraste.
 - [x] Tester desktop/mobile et enregistrer un checkpoint.
+
+## Intégration MongoDB sécurisée
+
+- [x] Ajouter le support full-stack/backend au projet.
+- [x] Stocker la chaîne MongoDB comme secret d’environnement, jamais dans le code.
+- [x] Tester la connexion sans afficher le secret dans les logs.
+- [ ] Préparer les collections nécessaires pour les biens, utilisateurs et demandes.
+- [ ] Révoquer ou renouveler manuellement le mot de passe MongoDB partagé avant production ou récupération publique du code.
+
+## Secret MongoDB sécurisé
+
+- [x] Configurer `MONGODB_URI` via les secrets du projet.
+- [x] Éviter toute écriture de la chaîne en clair dans `.env` versionné.
+- [x] Ajouter un test backend de connexion sans afficher le secret.
+- [x] Documenter la procédure de révocation et de renouvellement avant production.
+
+## Credentials Atlas reçus
+
+- [x] Lire `atlas-credentials.env` fourni et migrer sa valeur vers le gestionnaire de secrets.
+- [x] Mettre à jour `MONGODB_URI` avec la valeur Atlas fournie.
+- [x] Rejouer le test de ping MongoDB et corriger les dépendances restantes.
+- [x] Enregistrer un checkpoint après validation de test.
+
+## Atlas IP Access List confirmée
+
+- [x] Relancer le ping MongoDB après confirmation de `0.0.0.0/0` et de l’IP active.
+- [x] Diagnostiquer une éventuelle erreur TLS persistante.
+- [x] Documenter le résultat sans exposer les identifiants.
