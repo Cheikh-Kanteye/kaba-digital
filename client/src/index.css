@@ -237,3 +237,49 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .detail-panel-copy .contact-button { margin-top: 28px; }
 .detail-close { position: absolute; z-index: 2; right: 16px; top: 16px; width: 35px; height: 35px; border: 1px solid rgba(255,255,255,.75); background: rgba(24,59,48,.75); color: white; display: grid; place-items: center; }
 @media (max-width: 700px) { .selection-hero { min-height: 390px; padding: 25px 22px 55px; } .selection-hero-copy { margin-top: 70px; } .selection-hero-copy h1 { font-size: 66px; } .selection-catalogue { padding: 78px 22px 90px; } .catalogue-top { display: block; margin-bottom: 40px; } .catalogue-note { margin-top: 25px; } .catalogue-filters { align-items: stretch; flex-direction: column; } .catalogue-filters label { width: 100%; } .catalogue-grid { grid-template-columns: 1fr; gap: 52px; } .catalogue-card:nth-child(even) { margin-top: 0; } .catalogue-media, .catalogue-card:nth-child(even) .catalogue-media { height: 360px; transform: none; } .catalogue-details h3 { font-size: 29px; } .selection-footer { flex-direction: column; } .detail-overlay { padding: 16px; } .detail-panel { display: block; max-height: 92vh; } .detail-panel > img { height: 260px; min-height: 0; } .detail-panel-copy { padding: 35px 24px 42px; } }
+
+/* Accueil — six biens : grille régulière en desktop, deux cartes par ligne sur mobile. */
+.selection-section .property-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 58px 28px; align-items: start; }
+.selection-section .property-card,
+.selection-section .property-card:nth-child(2),
+.selection-section .property-card:nth-child(3),
+.selection-section .property-card:nth-child(4),
+.selection-section .property-card:nth-child(5),
+.selection-section .property-card:nth-child(6) { margin-top: 0; }
+.selection-section .property-image-wrap,
+.selection-section .property-card:nth-child(2) .property-image-wrap,
+.selection-section .property-card:nth-child(3) .property-image-wrap,
+.selection-section .property-card:nth-child(4) .property-image-wrap,
+.selection-section .property-card:nth-child(5) .property-image-wrap,
+.selection-section .property-card:nth-child(6) .property-image-wrap { height: 330px; transform: none; }
+@media (max-width: 900px) {
+  .selection-section .property-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 38px 18px; }
+  .selection-section .property-card:first-child { grid-row: auto; }
+  .selection-section .property-image-wrap,
+  .selection-section .property-card:nth-child(2) .property-image-wrap,
+  .selection-section .property-card:nth-child(3) .property-image-wrap,
+  .selection-section .property-card:nth-child(4) .property-image-wrap,
+  .selection-section .property-card:nth-child(5) .property-image-wrap,
+  .selection-section .property-card:nth-child(6) .property-image-wrap { height: 270px; }
+}
+@media (max-width: 560px) {
+  .selection-section .property-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 34px 12px; }
+  .selection-section .property-image-wrap,
+  .selection-section .property-card:nth-child(2) .property-image-wrap,
+  .selection-section .property-card:nth-child(3) .property-image-wrap,
+  .selection-section .property-card:nth-child(4) .property-image-wrap,
+  .selection-section .property-card:nth-child(5) .property-image-wrap,
+  .selection-section .property-card:nth-child(6) .property-image-wrap { height: 190px; border-width: 4px; }
+  .selection-section .property-tag { left: 7px; top: 7px; padding: 5px 6px; font-size: 6px; max-width: calc(100% - 34px); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .selection-section .property-number { right: 8px; top: 7px; font-size: 17px; }
+  .selection-section .media-counter { left: 8px; bottom: 9px; font-size: 6px; }
+  .selection-section .media-controls { right: 7px; bottom: 7px; gap: 3px; }
+  .selection-section .media-controls button { width: 25px; height: 25px; }
+  .selection-section .property-details { padding: 11px 2px 0; }
+  .selection-section .property-caption { display: block; }
+  .selection-section .property-seal { display: block; margin-top: 5px; font-size: 6px; }
+  .selection-section .property-type { font-size: 7px; }
+  .selection-section .property-details h3 { font-size: 19px; line-height: 1.02; margin: 9px 0 6px; }
+  .selection-section .property-price { font-size: 8px; }
+  .selection-section .property-media-note { font-size: 7px; margin-top: 7px; }
+}

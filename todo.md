@@ -71,3 +71,11 @@
 - [x] Vérifier le bouton ciblé à la ligne 141 de `Home.tsx`.
 - [x] Confirmer ou corriger manuellement sa destination.
 - [x] Valider le build et créer un checkpoint.
+
+## Six biens sur l’accueil
+
+- [x] Étendre la sélection d’accueil à six biens.
+- [x] Afficher trois cartes par ligne sur desktop, soit deux lignes.
+- [x] Afficher deux cartes par ligne sur mobile.
+- [x] Vérifier les médias, l’espacement et le CTA final.
+- [x] Enregistrer un checkpoint.
