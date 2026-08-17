@@ -118,3 +118,11 @@
 - [x] Vérifier l’image ciblée à la ligne 111 de `Home.tsx`.
 - [x] Supprimer le fond blanc et augmenter la taille du logo.
 - [x] Valider le rendu et créer un checkpoint.
+
+## Logo agrandi et headers fixes
+
+- [x] Agrandir le logo officiel dans le header principal.
+- [x] Passer les headers principaux en `position: fixed` avec `top: 0`.
+- [x] Ajouter les offsets nécessaires pour éviter le chevauchement du contenu.
+- [x] Vérifier desktop, mobile et le défilement.
+- [x] Enregistrer un checkpoint.

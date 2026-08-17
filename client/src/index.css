@@ -12,10 +12,10 @@ a { color: inherit; text-decoration: none; }
 button, input, select { font: inherit; }
 button { cursor: pointer; }
 
-.kaba-site { overflow: hidden; background: var(--paper); }
-.site-header { height: 82px; padding: 0 clamp(22px, 5vw, 82px); display: flex; align-items: center; gap: 46px; background: var(--paper); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--line); box-shadow: 0 4px 18px rgba(28,38,33,.06); }
+.kaba-site { overflow: hidden; background: var(--paper); padding-top: 82px; }
+.site-header { height: 82px; padding: 0 clamp(22px, 5vw, 82px); display: flex; align-items: center; gap: 46px; background: var(--paper); position: fixed; top: 0; left: 0; right: 0; z-index: 100; border-bottom: 1px solid var(--line); box-shadow: 0 4px 18px rgba(28,38,33,.06); }
 .brand, .footer-brand { display: inline-flex; align-items: center; gap: 11px; font-family: "DM Serif Display", serif; font-size: 28px; letter-spacing: -.04em; } .brand-logo { display: block; }
-.brand img { width: 150px; height: auto; max-height: 50px; object-fit: contain; background: transparent; } .footer-brand img { width: 30px; height: 30px; object-fit: contain; }
+.brand img { width: 190px; height: auto; max-height: 62px; object-fit: contain; background: transparent; } .footer-brand img { width: 30px; height: 30px; object-fit: contain; }
 .header-place { color: var(--muted); font-size: 9px; letter-spacing: .16em; font-weight: 700; }
 .header-place span { color: var(--brass); padding: 0 5px; }
 .main-nav { display: flex; gap: clamp(18px, 3vw, 38px); margin-left: auto; }
@@ -296,8 +296,8 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .dashboard-nav button.is-active { border-left: 2px solid var(--brass); color: white; }
 .dashboard-nav button b { margin-left: auto; width: 20px; height: 20px; display: grid; place-items: center; border-radius: 50%; background: var(--brass); color: var(--green); font-size: 9px; }
 .dashboard-sidebar-bottom { margin-top: auto; border-top: 1px solid rgba(255,255,255,.12); padding-top: 18px; }
-.dashboard-main { flex: 1; min-width: 0; }
-.dashboard-header { min-height: 102px; padding: 27px clamp(22px, 4vw, 65px); display: flex; align-items: center; justify-content: space-between; gap: 25px; background: var(--paper); border-bottom: 1px solid var(--line); }
+.dashboard-main { flex: 1; min-width: 0; padding-top: 102px; }
+.dashboard-header { position: fixed; top: 0; right: 0; left: 250px; z-index: 15; min-height: 102px; padding: 27px clamp(22px, 4vw, 65px); display: flex; align-items: center; justify-content: space-between; gap: 25px; background: var(--paper); border-bottom: 1px solid var(--line); }
 .dashboard-breadcrumb { color: var(--muted); font-size: 8px; font-weight: 800; letter-spacing: .16em; margin: 0 0 8px; }
 .dashboard-breadcrumb span { color: var(--brass); padding: 0 5px; }
 .dashboard-header h1 { color: var(--green); font: 35px "DM Serif Display", serif; letter-spacing: -.04em; margin: 0; }
@@ -399,3 +399,6 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .dashboard-brand img { width: 31px; height: 31px; object-fit: cover; border-radius: 7px; }
 .dashboard-brand > span { font-family: "DM Serif Display", serif; }
 @media (max-width: 760px) { .auth-brand img { width: 128px; } }
+
+/* Headers fixes — offsets responsives pour maintenir le contenu entièrement visible. */
+@media (max-width: 900px) { .kaba-site { padding-top: 70px; } .dashboard-header { left: 0; min-height: 70px; padding: 18px 22px; } .dashboard-main { padding-top: 70px; } }
