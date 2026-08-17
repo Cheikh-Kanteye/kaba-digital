@@ -256,3 +256,16 @@
 - [x] Garder la Vue d’ensemble limitée aux indicateurs et raccourcis essentiels.
 - [x] Déplacer les listes détaillées de biens vers Mes biens, les médias vers Médias et les demandes vers Demandes reçues.
 - [x] Vérifier les boutons de navigation, le responsive, les tests et créer un checkpoint.
+
+## Pages admin manquantes
+
+- [x] Créer une vue Utilisateurs dédiée avec données MongoDB et rôles.
+- [x] Créer une vue Biens publiés dédiée avec données MongoDB et statuts.
+- [x] Créer une vue Demandes dédiée avec données MongoDB et traitement des statuts.
+- [x] Brancher la navigation, les états responsive, les tests et créer un checkpoint.
+
+- [x] Vérifier visuellement les pages admin Utilisateurs, Biens publiés et Demandes en mobile et tablette.
+- [x] Enregistrer le checkpoint après validation finale des nouvelles pages admin dédiées.
+
+- [x] Vérifier les trois pages admin sur une largeur tablette 768 px.
+- [x] Enregistrer le checkpoint final des pages admin dédiées après la vérification tablette.

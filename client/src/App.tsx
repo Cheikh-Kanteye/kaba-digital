@@ -20,6 +20,9 @@ function Router() {
       <Route path={"/login"} component={() => <Auth mode="login" />} />
       <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/admin"} component={Admin} />
+      <Route path={"/admin/users"} component={Admin} />
+      <Route path={"/admin/properties"} component={Admin} />
+      <Route path={"/admin/inquiries"} component={Admin} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
