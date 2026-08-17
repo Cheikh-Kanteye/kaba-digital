@@ -138,8 +138,7 @@ export default function Home() {
             </article>
           ))}
         </div>
-        <button className="outline-button" onClick={() => setShowMore(!showMore)}>{showMore ? "Réduire la sélection" : resultLabel} <ArrowUpRight size={17} /></button>
-        {showMore && <p className="selection-feedback">La sélection complète sera bientôt disponible. Pour une recherche précise, écrivez-nous directement.</p>}
+        <a className="outline-button" href="/selection">Voir la sélection complète <ArrowUpRight size={17} /></a>
       </section>
 
       <section className="approach-section" id="approche">

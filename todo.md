@@ -65,3 +65,9 @@
 - [x] Harmoniser les médias et les fiches détaillées avec l’accueil.
 - [x] Corriger le responsive et valider les états interactifs.
 - [x] Enregistrer un checkpoint livrable.
+
+## Vérification du CTA édité
+
+- [x] Vérifier le bouton ciblé à la ligne 141 de `Home.tsx`.
+- [x] Confirmer ou corriger manuellement sa destination.
+- [x] Valider le build et créer un checkpoint.
