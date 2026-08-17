@@ -5,6 +5,7 @@ import { sdk } from "./_core/sdk";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { kabaRouter } from "./routers/kaba";
+import { adminRouter } from "./routers/admin";
 import { getKabaCollections } from "./mongodbCollections";
 import { hashPassword, verifyPassword } from "./localAuth";
 import { upsertUser } from "./db";
@@ -15,6 +16,7 @@ export const appRouter = router({
     // if you need to use socket.io, read and register route in server/_core/index.ts, all api should start with '/api/' so that the gateway can route correctly
   system: systemRouter,
   kaba: kabaRouter,
+  admin: adminRouter,
   auth: router({
     me: publicProcedure.query(opts => opts.ctx.user),
     localLogin: publicProcedure.input(z.object({ email: z.string().email(), password: z.string().min(8).max(200) })).mutation(async ({ ctx, input }) => {

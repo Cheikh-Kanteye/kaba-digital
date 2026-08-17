@@ -230,3 +230,9 @@
 
 - [x] Exécuter un test d’intégration sur un vrai compte local complet, puis nettoyer ou conserver uniquement les données nécessaires.
 - [x] Créer le checkpoint après cette validation d’intégration réelle.
+
+## Dashboard administrateur séparé
+
+- [x] Ajouter une route et une interface `/admin` distinctes de l’espace Agent/Courtier.
+- [x] Rediriger l’admin vers `/admin` et refuser l’accès admin aux comptes standards côté serveur et frontend.
+- [x] Tester la séparation des accès, le build et créer un checkpoint.

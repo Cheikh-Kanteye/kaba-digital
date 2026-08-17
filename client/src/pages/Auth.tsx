@@ -15,7 +15,7 @@ export default function Auth({ mode = "register" }: { mode?: "register" | "login
   const [loginPassword, setLoginPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const isRegister = mode === "register";
-  const localLogin = trpc.auth.localLogin.useMutation({ onSuccess: () => navigate("/dashboard") });
+  const localLogin = trpc.auth.localLogin.useMutation({ onSuccess: (result) => navigate(result.role === "admin" ? "/admin" : "/dashboard") });
   const localRegister = trpc.auth.localRegister.useMutation({ onSuccess: () => navigate("/dashboard") });
 
   function readInstructions() {
