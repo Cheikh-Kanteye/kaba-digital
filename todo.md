@@ -236,3 +236,9 @@
 - [x] Ajouter une route et une interface `/admin` distinctes de l’espace Agent/Courtier.
 - [x] Rediriger l’admin vers `/admin` et refuser l’accès admin aux comptes standards côté serveur et frontend.
 - [x] Tester la séparation des accès, le build et créer un checkpoint.
+
+## Refonte design admin
+
+- [x] Recomposer le dashboard admin avec une direction éditoriale plus distinctive.
+- [x] Améliorer les cartes statistiques, la navigation et les blocs d’activité.
+- [x] Vérifier le responsive, les états de chargement et le build puis créer un checkpoint.
