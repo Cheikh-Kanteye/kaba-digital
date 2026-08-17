@@ -21,8 +21,8 @@
 
 ## Correction du symbole sénégalais
 
-- [ ] Remplacer le losange rouge par une étoile verte sur fond jaune.
-- [ ] Vérifier le build et l’aperçu final.
+- [x] Remplacer le losange rouge par une étoile verte sur fond jaune.
+- [x] Vérifier le build et l’aperçu final.
 
 ## Header sticky
 
@@ -31,11 +31,11 @@
 
 ## Page complète La sélection
 
-- [ ] Ajouter une route dédiée `/selection` et son en-tête éditorial.
-- [ ] Ajouter les filtres vente/location et catégories de biens.
-- [ ] Afficher les propriétés avec galerie images/vidéo et métadonnées.
-- [ ] Ajouter une vue détaillée accessible depuis chaque propriété.
-- [ ] Tester la navigation, le responsive et enregistrer un checkpoint.
+- [x] Ajouter une route dédiée `/selection` et son en-tête éditorial.
+- [x] Ajouter les filtres vente/location et catégories de biens.
+- [x] Afficher les propriétés avec galerie images/vidéo et métadonnées.
+- [x] Ajouter une vue détaillée accessible depuis chaque propriété.
+- [x] Tester la navigation, le responsive et enregistrer un checkpoint.
 
 ## Accès membres Kaba
 
@@ -139,7 +139,7 @@
 - [x] Ajouter le support full-stack/backend au projet.
 - [x] Stocker la chaîne MongoDB comme secret d’environnement, jamais dans le code.
 - [x] Tester la connexion sans afficher le secret dans les logs.
-- [ ] Préparer les collections nécessaires pour les biens, utilisateurs et demandes.
+- [x] Préparer les collections nécessaires pour les biens, utilisateurs et demandes.
 - [ ] Révoquer ou renouveler manuellement le mot de passe MongoDB partagé avant production ou récupération publique du code.
 
 ## Secret MongoDB sécurisé
