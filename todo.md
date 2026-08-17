@@ -188,4 +188,4 @@
 - [x] Conditionner l’état vide de la sélection à l’absence de chargement ou d’erreur.
 
 - [x] Exécuter un build final de production.
-- [ ] Enregistrer le checkpoint final après validation.
+- [x] Enregistrer le checkpoint final après validation.
