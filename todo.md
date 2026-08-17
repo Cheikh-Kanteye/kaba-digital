@@ -189,3 +189,7 @@
 
 - [x] Exécuter un build final de production.
 - [x] Enregistrer le checkpoint final après validation.
+
+## Seed administrateur
+
+- [x] Promouvoir OWNER_OPEN_ID en administrateur dans MongoDB et vérifier le rôle persisté.
