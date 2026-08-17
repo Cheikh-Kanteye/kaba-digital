@@ -6,6 +6,7 @@ import type { FormEvent } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Menu, Pause, Play, Search, SlidersHorizontal, X } from "lucide-react";
 
 const heroImage = "/manus-storage/kaba-hero-dakar_28cefd79.jpg";
+const heroVideo = "/manus-storage/villa-background_cdfa3e9a.mp4";
 const monogram = "/manus-storage/icon-kaba_e91dc42c.png";
 const headerLogo = "/manus-storage/header-kaba-transparent_4fab226f.png";
 
@@ -126,7 +127,7 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-image" style={{ backgroundImage: `url(${heroImage})` }} />
+        <div className="hero-image" style={{ backgroundImage: `url(${heroImage})` }}><video src={heroVideo} poster={heroImage} autoPlay muted loop playsInline preload="metadata" aria-label="Vidéo d’une villa Kaba" /></div>
         <div className="hero-shade" />
         <div className="hero-copy">
           <p className="eyebrow light"><span>01</span> La sélection Kaba</p>

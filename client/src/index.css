@@ -402,3 +402,10 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 
 /* Headers fixes — offsets responsives pour maintenir le contenu entièrement visible. */
 @media (max-width: 900px) { .kaba-site { padding-top: 70px; } .dashboard-header { left: 0; min-height: 70px; padding: 18px 22px; } .dashboard-main { padding-top: 70px; } }
+
+/* Vidéo hero Kaba : image de secours, couverture plein écran et contraste éditorial protégé par le voile existant. */
+.hero-image { background-position: center; background-size: cover; }
+.hero-image video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; z-index: 0; }
+.hero-shade { z-index: 1; }
+.hero-copy, .hero-meta { z-index: 2; }
+@media (prefers-reduced-motion: reduce) { .hero-image video { display: none; } }

@@ -126,3 +126,10 @@
 - [x] Ajouter les offsets nécessaires pour éviter le chevauchement du contenu.
 - [x] Vérifier desktop, mobile et le défilement.
 - [x] Enregistrer un checkpoint.
+
+## Vidéo hero depuis archive
+
+- [x] Décompresser `villa-background.zip` et identifier le MP4.
+- [x] Téléverser la vidéo dans les assets web.
+- [x] L’utiliser en arrière-plan du hero avec fallback image et contraste.
+- [x] Tester desktop/mobile et enregistrer un checkpoint.
