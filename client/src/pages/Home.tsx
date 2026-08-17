@@ -6,7 +6,8 @@ import type { FormEvent } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Menu, Pause, Play, Search, SlidersHorizontal, X } from "lucide-react";
 
 const heroImage = "/manus-storage/kaba-hero-dakar_28cefd79.jpg";
-const monogram = "/manus-storage/kaba-monogram_e6015d22.png";
+const monogram = "/manus-storage/icon-kaba_e91dc42c.png";
+const headerLogo = "/manus-storage/header-kaba_21c09ba5.png";
 
 const properties = [
   {
@@ -107,8 +108,7 @@ export default function Home() {
     <main className="kaba-site">
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Kaba, retour à l'accueil">
-          <img src={monogram} alt="" />
-          <span>Kaba</span>
+          <img className="brand-logo" src={headerLogo} alt="Kaba" />
         </a>
         <div className="header-place">DAKAR <span>/</span> SÉNÉGAL</div>
         <nav className={menuOpen ? "main-nav is-open" : "main-nav"} aria-label="Navigation principale">

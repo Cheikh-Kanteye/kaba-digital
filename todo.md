@@ -104,3 +104,11 @@
 - [x] Ajouter des étapes courtes, des boutons larges et des aides visuelles.
 - [x] Préparer une aide audio ou une lecture des consignes.
 - [x] Tester la lisibilité et enregistrer un checkpoint.
+
+## Assets officiels Kaba
+
+- [x] Préparer header-kaba, icon-kaba et logo-kaba pour le projet.
+- [x] Remplacer les logos générés dans le header, l’authentification et le dashboard.
+- [x] Ajouter l’icône Kaba comme favicon.
+- [x] Vérifier les tailles, proportions et contrastes sur desktop/mobile.
+- [x] Enregistrer un checkpoint.
