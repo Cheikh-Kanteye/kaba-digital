@@ -79,3 +79,12 @@
 - [x] Afficher deux cartes par ligne sur mobile.
 - [x] Vérifier les médias, l’espacement et le CTA final.
 - [x] Enregistrer un checkpoint.
+
+## Dashboard professionnel Kaba
+
+- [x] Ajouter une route `/dashboard` accessible depuis l’espace membre.
+- [x] Créer la navigation latérale et la vue d’ensemble.
+- [x] Ajouter la gestion des biens et des médias.
+- [x] Ajouter les demandes reçues et le profil professionnel.
+- [x] Adapter les informations selon Agent immobilier ou Courtier.
+- [x] Tester le responsive et enregistrer un checkpoint.

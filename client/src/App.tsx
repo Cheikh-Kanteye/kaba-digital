@@ -7,6 +7,7 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import Selection from "./pages/Selection";
 import Auth from "./pages/Auth";
+import Dashboard from "./pages/Dashboard";
 
 
 function Router() {
@@ -16,6 +17,7 @@ function Router() {
       <Route path={"/selection"} component={Selection} />
       <Route path={"/register"} component={() => <Auth mode="register" />} />
       <Route path={"/login"} component={() => <Auth mode="login" />} />
+      <Route path={"/dashboard"} component={Dashboard} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
