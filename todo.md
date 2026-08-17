@@ -88,3 +88,11 @@
 - [x] Ajouter les demandes reçues et le profil professionnel.
 - [x] Adapter les informations selon Agent immobilier ou Courtier.
 - [x] Tester le responsive et enregistrer un checkpoint.
+
+## Accès de démonstration
+
+- [x] Ajouter les identifiants de test visibles sur la page de connexion.
+- [x] Valider email et mot de passe de démonstration.
+- [x] Rediriger vers `/dashboard` après connexion réussie.
+- [x] Afficher une erreur claire en cas d’identifiants incorrects.
+- [x] Tester le parcours et enregistrer un checkpoint.
