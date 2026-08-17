@@ -242,3 +242,11 @@
 - [x] Recomposer le dashboard admin avec une direction éditoriale plus distinctive.
 - [x] Améliorer les cartes statistiques, la navigation et les blocs d’activité.
 - [x] Vérifier le responsive, les états de chargement et le build puis créer un checkpoint.
+
+## Finalisation des autres pages
+
+- [x] Auditer et harmoniser l’accueil et la sélection après la refonte admin.
+- [x] Harmoniser l’authentification et l’espace Agent/Courtier avec la nouvelle direction premium.
+- [x] Vérifier tous les états dynamiques, le responsive, les tests et créer un checkpoint.
+
+- [x] Corriger le débordement horizontal du dashboard Agent/Courtier sur mobile après l’harmonisation visuelle.
