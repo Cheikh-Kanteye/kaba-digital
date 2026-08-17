@@ -96,3 +96,11 @@
 - [x] Rediriger vers `/dashboard` après connexion réussie.
 - [x] Afficher une erreur claire en cas d’identifiants incorrects.
 - [x] Tester le parcours et enregistrer un checkpoint.
+
+## Navigation simple et accessible
+
+- [x] Remplacer les actions du header par Connexion et Inscription.
+- [x] Simplifier les textes et les choix de profil.
+- [x] Ajouter des étapes courtes, des boutons larges et des aides visuelles.
+- [x] Préparer une aide audio ou une lecture des consignes.
+- [x] Tester la lisibilité et enregistrer un checkpoint.

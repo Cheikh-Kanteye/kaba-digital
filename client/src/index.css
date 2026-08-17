@@ -384,3 +384,12 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 .demo-credentials span { grid-column: 1 / -1; color: var(--brass); font-size: 8px; font-weight: 800; letter-spacing: .14em; }
 .demo-credentials strong { color: var(--green); font-size: 10px; font-weight: 700; }
 .auth-error { color: #9b3f37; background: #f5e5e1; border-left: 2px solid #b54e42; padding: 10px 12px; font-size: 10px; line-height: 1.5; margin: -4px 0 0; }
+
+/* Accessibilité Kaba : consignes courtes, bouton audio visible et contrôles faciles à comprendre. */
+.read-help { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; border: 1px solid var(--green); background: transparent; color: var(--green); padding: 11px 13px; margin: 0 0 25px; font-size: 10px; font-weight: 800; }
+.read-help:hover { background: var(--green); color: white; }
+.auth-form label { font-size: 10px; }
+.auth-form input { min-height: 48px; font-size: 13px; }
+.auth-button { min-height: 50px; font-size: 12px; }
+@media (max-width: 900px) { .header-actions .text-link { display: inline-flex; } .header-actions .text-link:last-of-type { display: inline-flex; } }
+@media (max-width: 560px) { .header-actions .text-link { display: none !important; } .read-help { width: 100%; justify-content: center; } }

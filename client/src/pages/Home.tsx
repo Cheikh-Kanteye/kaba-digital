@@ -118,7 +118,7 @@ export default function Home() {
           <a href="#contact" onClick={() => setMenuOpen(false)}>Parlons-nous</a>
         </nav>
         <div className="header-actions">
-          <a className="text-link" href="/login">Accès membre <ArrowUpRight size={15} /></a><a className="text-link" href="/selection">Déposer un bien <ArrowUpRight size={15} /></a>
+          <a className="text-link" href="/login">Connexion <ArrowUpRight size={15} /></a><a className="text-link" href="/register">Inscription <ArrowUpRight size={15} /></a>
           <button className="menu-toggle" aria-label={menuOpen ? "Fermer le menu" : "Ouvrir le menu"} onClick={() => setMenuOpen(!menuOpen)}>
             {menuOpen ? <X size={21} /> : <Menu size={21} />}
           </button>
