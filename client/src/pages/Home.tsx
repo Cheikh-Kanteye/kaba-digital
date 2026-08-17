@@ -7,7 +7,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Menu, Pause, Play, Se
 
 const heroImage = "/manus-storage/kaba-hero-dakar_28cefd79.jpg";
 const monogram = "/manus-storage/icon-kaba_e91dc42c.png";
-const headerLogo = "/manus-storage/header-kaba_21c09ba5.png";
+const headerLogo = "/manus-storage/header-kaba-transparent_4fab226f.png";
 
 const properties = [
   {

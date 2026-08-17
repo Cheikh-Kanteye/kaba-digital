@@ -112,3 +112,9 @@
 - [x] Ajouter l’icône Kaba comme favicon.
 - [x] Vérifier les tailles, proportions et contrastes sur desktop/mobile.
 - [x] Enregistrer un checkpoint.
+
+## Correction du logo du header
+
+- [x] Vérifier l’image ciblée à la ligne 111 de `Home.tsx`.
+- [x] Supprimer le fond blanc et augmenter la taille du logo.
+- [x] Valider le rendu et créer un checkpoint.
