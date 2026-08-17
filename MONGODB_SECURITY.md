@@ -6,6 +6,8 @@ Le helper serveur `server/mongodb.ts` ouvre une connexion MongoDB à la demande 
 
 Le fichier Atlas fourni ne doit plus être relu ni copié dans le projet après migration. Supprimez-le de votre espace local lorsque vous n’en avez plus besoin.
 
+Le secret MongoDB actuellement configuré est conservé uniquement pour l’environnement de test et de prévisualisation. Il doit être révoqué et remplacé manuellement avant toute mise en production ou avant la diffusion/récupération publique du code.
+
 Avant toute mise en production, le mot de passe Atlas utilisé pour les tests doit être **révoqué et renouvelé**. Il faudra ensuite mettre à jour `MONGODB_URI` dans le gestionnaire de secrets, limiter l’IP Access List aux environnements nécessaires et vérifier que les droits de l’utilisateur MongoDB sont limités au périmètre Kaba.
 
 Aucune donnée client, aucun mot de passe et aucune chaîne de connexion ne doivent être ajoutés aux fixtures ou aux données de démonstration.

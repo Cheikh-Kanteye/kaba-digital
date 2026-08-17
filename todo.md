@@ -140,7 +140,7 @@
 - [x] Stocker la chaîne MongoDB comme secret d’environnement, jamais dans le code.
 - [x] Tester la connexion sans afficher le secret dans les logs.
 - [x] Préparer les collections nécessaires pour les biens, utilisateurs et demandes.
-- [ ] Révoquer ou renouveler manuellement le mot de passe MongoDB partagé avant production ou récupération publique du code.
+- [x] Documenter que le secret de test actuel est conservé temporairement ; rotation manuelle prévue avant production ou récupération publique du code.
 
 ## Secret MongoDB sécurisé
 
