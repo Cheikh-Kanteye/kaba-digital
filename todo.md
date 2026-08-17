@@ -193,3 +193,7 @@
 ## Seed administrateur
 
 - [x] Promouvoir OWNER_OPEN_ID en administrateur dans MongoDB et vérifier le rôle persisté.
+
+## Correction logo Auth
+
+- [x] Utiliser le logo carré Kaba avec coins arrondis sur la page Auth et créer un checkpoint après validation.
