@@ -341,3 +341,9 @@
 - [x] Animer le hero, les transitions de sections, les cartes de sélection et les interactions principales.
 - [x] Respecter `prefers-reduced-motion`, le responsive et les performances.
 - [x] Ajouter ou mettre à jour les tests, vérifier le rendu et publier un checkpoint GSAP.
+
+## Lisibilité typographique
+
+- [x] Augmenter les textes secondaires et micro-libellés trop petits sur l’accueil et la sélection.
+- [x] Renforcer les contrastes et la lisibilité mobile sans dégrader la hiérarchie éditoriale.
+- [x] Vérifier les captures desktop/mobile, les tests et publier un checkpoint.

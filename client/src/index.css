@@ -654,3 +654,63 @@ button:disabled, .dashboard-primary:disabled { cursor: wait; opacity: .62; }
   .admin-view-intro p { max-width: 34ch; }
   .admin-data-table, .admin-inquiries { overflow-x: auto; }
 }
+
+/* Lisibilité premium : les repères restent fins, mais jamais minuscules ou indistincts. */
+.kaba-site .header-place,
+.kaba-site .hero-meta,
+.kaba-site .section-kicker,
+.kaba-site .property-tag,
+.kaba-site .media-counter,
+.kaba-site .property-seal,
+.kaba-site .property-media-note,
+.kaba-site .property-type,
+.selection-page .selection-hero-top,
+.selection-page .catalogue-media-count,
+.selection-page .catalogue-meta,
+.selection-page .catalogue-count,
+.selection-page .catalogue-filters label span { font-size: 11px; }
+.kaba-site .main-nav a,
+.kaba-site .text-link,
+.kaba-site .hero-link,
+.kaba-site .outline-button,
+.kaba-site .light-link,
+.kaba-site .contact-button,
+.selection-page .filter-tabs button,
+.selection-page .catalogue-filters select { font-size: 12px; }
+.kaba-site .section-note,
+.kaba-site .search-copy p,
+.kaba-site .service-row p,
+.kaba-site .footer-brand p,
+.kaba-site .footer-column a,
+.selection-page .catalogue-note,
+.selection-page .selection-hero-copy > p:last-child { font-size: 13px; }
+.kaba-site .hero-intro { font-size: 15px; }
+.kaba-site .search-form label span,
+.kaba-site .footer-label { font-size: 10px; }
+@media (max-width: 560px) {
+  .kaba-site .hero-intro { font-size: 14px; line-height: 1.75; }
+  .kaba-site .hero-meta { font-size: 10px; }
+  .kaba-site .section-kicker,
+  .kaba-site .property-tag,
+  .kaba-site .media-counter,
+  .kaba-site .property-seal,
+  .kaba-site .property-media-note,
+  .kaba-site .property-type,
+  .selection-page .selection-hero-top,
+  .selection-page .catalogue-media-count,
+  .selection-page .catalogue-meta,
+  .selection-page .catalogue-count,
+  .selection-page .catalogue-filters label span { font-size: 12px; }
+  .kaba-site .section-note,
+  .kaba-site .search-copy p,
+  .kaba-site .service-row p,
+  .kaba-site .footer-brand p,
+  .kaba-site .footer-column a,
+  .selection-page .catalogue-note,
+  .selection-page .selection-hero-copy > p:last-child { font-size: 14px; }
+  .kaba-site .hero-link,
+  .kaba-site .outline-button,
+  .kaba-site .contact-button,
+  .selection-page .filter-tabs button,
+  .selection-page .catalogue-filters select { font-size: 13px; }
+}
