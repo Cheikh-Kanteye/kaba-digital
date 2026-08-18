@@ -143,7 +143,7 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 
 /* Auth Kaba : parcours professionnel sobre, formulaire clair et détails de confiance. */
 .auth-page { height: 100dvh; min-height: 100dvh; overflow: hidden; display: grid; grid-template-columns: 1.12fr .88fr; background: var(--paper); }
-.auth-image { height: 100dvh; min-height: 0; position: relative; background: url('/manus-storage/kaba-hero-dakar_73fcf37c.jpg') center / cover; color: white; overflow: hidden; }
+.auth-image { height: 100dvh; min-height: 0; position: relative; background: url('/assets/kaba/hero-dakar.webp') center / cover; color: white; overflow: hidden; }
 .auth-image-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,25,20,.68), rgba(10,25,20,.08)); }
 .auth-brand { position: absolute; top: 35px; left: clamp(24px, 5vw, 76px); z-index: 1; display: flex; align-items: center; gap: 11px; font: 28px "DM Serif Display", serif; }
 .auth-mark { width: 30px; height: 30px; display: grid; place-items: center; border: 1px solid var(--brass); color: var(--brass); font-size: 19px; }
@@ -183,7 +183,7 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
 
 /* Sélection Kaba : catalogue éditorial, grille respirante et médias cadrés comme des planches de magazine. */
 .selection-page { min-height: 100vh; background: var(--paper); color: var(--ink); }
-.selection-hero { min-height: 430px; padding: 34px clamp(24px, 8vw, 120px) 72px; color: white; position: relative; background: linear-gradient(90deg, rgba(10,25,20,.82), rgba(10,25,20,.18)), url('/manus-storage/kaba-hero-dakar_73fcf37c.jpg') center 56% / cover; }
+.selection-hero { min-height: 430px; padding: 34px clamp(24px, 8vw, 120px) 72px; color: white; position: relative; background: linear-gradient(90deg, rgba(10,25,20,.82), rgba(10,25,20,.18)), url('/assets/kaba/hero-dakar.webp') center 56% / cover; }
 .selection-hero-top { display: flex; justify-content: space-between; align-items: center; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.7); }
 .back-link { font: 26px "DM Serif Display", serif; letter-spacing: -.04em; text-transform: none; color: white; }
 .selection-hero-copy { margin-top: 75px; max-width: 700px; }

@@ -365,3 +365,9 @@
 - [x] Auditer les références d’images, logos et vidéos qui ne survivent pas au déploiement Docker.
 - [x] Remplacer les chemins non persistants par des URLs d’assets déployables et conserver des fallbacks fiables.
 - [x] Vérifier le build de production, les réponses des assets et publier un checkpoint de correction.
+
+## Assets critiques dans le build public
+
+- [x] Copier les logos, images hero et vidéo critique dans `client/public/assets`.
+- [x] Remplacer les références par des chemins racine `/assets/...` et vérifier le fallback image.
+- [x] Tester les URLs dans le build de production et republier la correction.
