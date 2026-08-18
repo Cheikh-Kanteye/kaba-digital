@@ -377,3 +377,9 @@
 - [x] Auditer les max-width, marges et grilles qui limitent le dashboard professionnel.
 - [x] Étendre le contenu principal et les composants sur la largeur disponible sans créer de débordement.
 - [x] Vérifier desktop/mobile, tests et publier un checkpoint.
+
+## Upload média unifié
+
+- [x] Remplacer les champs URL image et vidéo par une zone unique drag-and-drop.
+- [x] Gérer plusieurs images et vidéos, aperçus, progression et suppression avant sauvegarde.
+- [x] Vérifier le flux Cloudinary, le responsive, les tests et publier un checkpoint.

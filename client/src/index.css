@@ -946,3 +946,21 @@ button:disabled, .dashboard-primary:disabled { cursor: wait; opacity: .62; }
 @media (max-width: 560px) {
   .dashboard-property-grid, .dashboard-media-grid { grid-template-columns: 1fr; }
 }
+
+/* Upload média unifié : images et vidéos dans une seule zone Cloudinary. */
+.media-dropzone { grid-column: 1 / -1; position: relative; border: 1px dashed rgba(30,70,56,.42); background: rgba(255,255,255,.65); transition: background .2s ease, border-color .2s ease, transform .2s ease; }
+.media-dropzone:hover, .media-dropzone.is-dragging { border-color: var(--brass); background: rgba(193,155,88,.12); transform: translateY(-1px); }
+.media-dropzone-input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.media-dropzone-content { min-height: 190px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 28px; color: var(--green); text-align: center; cursor: pointer; }
+.media-dropzone-icon { display: flex; align-items: center; gap: 7px; color: var(--brass); margin-bottom: 5px; }
+.media-dropzone-content strong { font-size: 15px; letter-spacing: -.01em; text-transform: none; }
+.media-dropzone-content span, .media-dropzone-content small { color: var(--muted); font-size: 11px; letter-spacing: normal; text-transform: none; }
+.media-dropzone-content small { font-size: 10px; opacity: .82; }
+.uploaded-media-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.uploaded-media-item { position: relative; aspect-ratio: 1.35; overflow: hidden; background: var(--sand); border: 1px solid var(--line); }
+.uploaded-media-item img, .uploaded-media-item video { width: 100%; height: 100%; display: block; object-fit: cover; }
+.uploaded-media-kind { position: absolute; left: 8px; bottom: 8px; padding: 5px 7px; background: var(--green); color: white; font-size: 9px; font-weight: 800; letter-spacing: .04em; }
+.uploaded-media-remove { position: absolute; top: 7px; right: 7px; display: grid; place-items: center; width: 28px; height: 28px; border: 0; border-radius: 50%; background: rgba(255,255,255,.92); color: var(--green); cursor: pointer; }
+.uploaded-media-remove:hover { background: var(--brass); color: var(--green); }
+@media (max-width: 900px) { .uploaded-media-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .uploaded-media-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .media-dropzone-content { min-height: 170px; padding: 22px 16px; } .media-dropzone-content strong { font-size: 14px; } }
