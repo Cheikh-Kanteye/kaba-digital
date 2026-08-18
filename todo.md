@@ -353,3 +353,9 @@
 - [x] Auditer les tailles de texte et contrastes sur Auth, dashboard professionnel et console admin.
 - [x] Harmoniser l’échelle typographique et les labels sur toutes les interfaces responsive.
 - [x] Vérifier desktop/mobile, tests, captures et publier un checkpoint global de lisibilité.
+
+## Paragraphes plus lisibles
+
+- [x] Auditer les paragraphes et textes descriptifs trop petits dans toute l’application.
+- [x] Augmenter leur taille et leur interligne sur desktop et mobile.
+- [x] Vérifier les pages clés, les tests et publier un checkpoint.
