@@ -329,4 +329,8 @@
 
 ## Blocage fournisseur Cloudinary
 
-- [ ] Corriger la configuration Cloudinary active : les variables existent, mais l’API répond `Invalid api_key`; relancer le smoke test réel après rotation ou correction côté Cloudinary.
+- [x] Corriger la configuration Cloudinary active : la nouvelle paire et les permissions sont validées par un smoke test réel avec nettoyage du média temporaire.
+
+## Résultat audit legacy
+
+- [x] Tenter l’inventaire MONGO_URI2 en lecture seule ; l’accès est bloqué avant connexion par un paramètre `tls/ssl` invalide dans la chaîne fournie, sans lecture ni modification de la base source.
