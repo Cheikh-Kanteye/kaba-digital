@@ -303,7 +303,7 @@
 
 ## Migration legacy MONGO_URI2 et Cloudinary
 
-- [ ] Auditer MONGO_URI2 en lecture seule et inventorier ses collections, biens, utilisateurs, demandes et médias.
+- [x] Tenter l’audit MONGO_URI2 en lecture seule ; l’inventaire reste impossible car l’URI fournie demeure invalide après normalisation, sans accès ni modification de la source.
 - [x] Reporter le mapping legacy jusqu’à la récupération des accès MONGO_URI2, sans modifier la source.
 - [x] Reporter le script de migration legacy jusqu’à la récupération des accès MONGO_URI2.
 - [x] Utiliser Cloudinary pour les nouveaux uploads et documenter la stratégie des médias legacy ; les médias legacy restent inchangés.
