@@ -636,3 +636,21 @@ h1 em, h2 em { color: var(--brass); font-style: italic; }
   .admin-nav button svg { width: 18px; height: 18px; }
   .admin-nav button.is-active { color: #12352b; }
 }
+
+.footer-link-muted { display: block; color: rgba(255,255,255,.38); font-size: 11px; cursor: default; }
+@media (max-width: 560px) { .footer-link-muted { font-size: 10px; } }
+
+/* Polish final des parcours : contraste, focus et états d’action cohérents. */
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 3px solid #d4a94f; outline-offset: 3px; }
+button:disabled, .dashboard-primary:disabled { cursor: wait; opacity: .62; }
+.form-error, .auth-error { color: #9f2f27; background: rgba(159,47,39,.08); border-left: 3px solid #9f2f27; padding: 10px 12px; line-height: 1.5; }
+.form-success { color: #174c3c; background: rgba(23,76,60,.09); border-left: 3px solid #174c3c; padding: 10px 12px; line-height: 1.5; }
+.dashboard-notification:hover { background: rgba(23,76,60,.1); color: var(--green); }
+.dashboard-shortcut, .dashboard-primary, .admin-stat, .admin-nav button { -webkit-tap-highlight-color: transparent; }
+@media (max-width: 560px) {
+  .dashboard-toolbar .dashboard-primary { width: 100%; justify-content: center; }
+  .dashboard-shortcut { min-height: 76px; gap: 10px; }
+  .dashboard-shortcut small { line-height: 1.35; }
+  .admin-view-intro p { max-width: 34ch; }
+  .admin-data-table, .admin-inquiries { overflow-x: auto; }
+}

@@ -269,3 +269,17 @@
 
 - [x] Vérifier les trois pages admin sur une largeur tablette 768 px.
 - [x] Enregistrer le checkpoint final des pages admin dédiées après la vérification tablette.
+
+## Audit parcours et polish final
+
+- [x] Cartographier les routes, CTA et destinations des parcours publics, Auth, professionnel et admin.
+- [x] Repérer les CTA sans destination, liens morts, états incomplets et actions sans feedback.
+- [x] Corriger les problèmes de contraste, hiérarchie, espacements et responsive détectés.
+- [x] Revalider tous les parcours, tests, build et créer un checkpoint.
+
+- [x] Donner une destination au bouton Paramètres et au bouton Notifications du dashboard professionnel.
+- [x] Ajouter un feedback clair après la synchronisation du profil et polir les états interactifs concernés.
+
+- [x] Renforcer le contraste et les états focus/disabled des CTA et des messages d’état.
+- [x] Stabiliser les espacements et la lisibilité mobile des actions dashboard/admin.
+- [x] Enregistrer le checkpoint après ces corrections de polish documentées.
