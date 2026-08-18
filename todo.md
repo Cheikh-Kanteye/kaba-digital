@@ -283,3 +283,13 @@
 - [x] Renforcer le contraste et les états focus/disabled des CTA et des messages d’état.
 - [x] Stabiliser les espacements et la lisibilité mobile des actions dashboard/admin.
 - [x] Enregistrer le checkpoint après ces corrections de polish documentées.
+
+## Docker, Nginx et kaba.digital
+
+- [x] Ajouter un Dockerfile de production compatible avec le serveur Express et le build Vite.
+- [x] Ajouter Docker Compose, Nginx, HTTPS Certbot et les variables d’environnement documentées.
+- [x] Ajouter les fichiers de configuration DNS et les instructions de déploiement pour `kaba.digital`.
+- [x] Valider les fichiers, le build et créer un checkpoint.
+
+- [x] Ajouter une validation CI qui exécute `docker compose config`, `docker build` et `nginx -t` pour les fichiers de production.
+- [x] Enregistrer un checkpoint Docker/Nginx après ajout de cette validation reproductible.

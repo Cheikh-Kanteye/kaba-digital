@@ -1,0 +1,40 @@
+name: Validate deployment
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  docker-nginx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Validate Compose syntax
+        run: docker compose -f docker-compose.yml -f docker-compose.bootstrap.yml config
+
+      - name: Build application image
+        run: docker build --tag kaba-app:ci .
+
+      - name: Prepare ephemeral TLS certificate
+        run: |
+          mkdir -p nginx/test-certs/live/kaba.digital
+          openssl req -x509 -nodes -newkey rsa:2048 -days 1 \
+            -keyout nginx/test-certs/live/kaba.digital/privkey.pem \
+            -out nginx/test-certs/live/kaba.digital/fullchain.pem \
+            -subj "/CN=kaba.digital"
+
+      - name: Validate Nginx HTTPS configuration
+        run: |
+          docker run --rm \
+            -v "$PWD/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro" \
+            -v "$PWD/nginx/test-certs:/etc/letsencrypt:ro" \
+            nginx:1.27-alpine nginx -t
+
+      - name: Validate Nginx bootstrap configuration
+        run: |
+          docker run --rm \
+            -v "$PWD/nginx/nginx.bootstrap.conf:/etc/nginx/conf.d/default.conf:ro" \
+            nginx:1.27-alpine nginx -t
