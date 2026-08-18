@@ -359,3 +359,9 @@
 - [x] Auditer les paragraphes et textes descriptifs trop petits dans toute l’application.
 - [x] Augmenter leur taille et leur interligne sur desktop et mobile.
 - [x] Vérifier les pages clés, les tests et publier un checkpoint.
+
+## Assets absents après déploiement
+
+- [x] Auditer les références d’images, logos et vidéos qui ne survivent pas au déploiement Docker.
+- [x] Remplacer les chemins non persistants par des URLs d’assets déployables et conserver des fallbacks fiables.
+- [x] Vérifier le build de production, les réponses des assets et publier un checkpoint de correction.

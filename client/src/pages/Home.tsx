@@ -8,10 +8,10 @@ import type { FormEvent } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Menu, Pause, Play, Search, SlidersHorizontal, X } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 
-const heroImage = "/manus-storage/kaba-hero-dakar_28cefd79.jpg";
-const heroVideo = "/manus-storage/villa-background_cdfa3e9a.mp4";
-const monogram = "/manus-storage/icon-kaba_e91dc42c.png";
-const headerLogo = "/manus-storage/header-kaba-transparent_4fab226f.png";
+const heroImage = "/manus-storage/kaba-hero-dakar_73fcf37c.jpg";
+const heroVideo = "/manus-storage/villa-background_36b1d197.mp4";
+const monogram = "/manus-storage/icon-kaba_4ca3b0a4.png";
+const headerLogo = "/manus-storage/header-kaba-transparent_a233bf9d.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,9 +22,9 @@ const properties = [
     title: "Une adresse ouverte sur le calme",
     location: "Sicap Amitié 3 · Dakar",
     price: "110 000 000 FCFA",
-    image: "/manus-storage/kaba-property-ngor_3d2ef10e.jpg",
+    image: "/manus-storage/kaba-property-ngor_4da8d1c6.jpg",
     tag: "Sélection Kaba",
-    media: ["/manus-storage/kaba-property-ngor_3d2ef10e.jpg", heroImage, "/manus-storage/kaba-land-dakar_98970f8e.jpg"],
+    media: ["/manus-storage/kaba-property-ngor_4da8d1c6.jpg", heroImage, "/manus-storage/kaba-land-dakar_84d45584.jpg"],
     video: "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
   },
   {
@@ -33,9 +33,9 @@ const properties = [
     title: "Lumière douce, volumes justes",
     location: "Almadies · Dakar",
     price: "250 000 FCFA / mois",
-    image: "/manus-storage/kaba-property-almadies_64bab9ed.jpg",
+    image: "/manus-storage/kaba-property-almadies_0d3857f0.jpg",
     tag: "À découvrir",
-    media: ["/manus-storage/kaba-property-almadies_64bab9ed.jpg", "/manus-storage/kaba-property-ngor_3d2ef10e.jpg", heroImage],
+    media: ["/manus-storage/kaba-property-almadies_0d3857f0.jpg", "/manus-storage/kaba-property-ngor_4da8d1c6.jpg", heroImage],
     video: "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
   },
   {
@@ -44,9 +44,9 @@ const properties = [
     title: "Un horizon à construire",
     location: "Lac Rose · Sénégal",
     price: "Sur demande",
-    image: "/manus-storage/kaba-land-dakar_98970f8e.jpg",
+    image: "/manus-storage/kaba-land-dakar_84d45584.jpg",
     tag: "Projet & investissement",
-    media: ["/manus-storage/kaba-land-dakar_98970f8e.jpg", heroImage, "/manus-storage/kaba-property-ngor_3d2ef10e.jpg"],
+    media: ["/manus-storage/kaba-land-dakar_84d45584.jpg", heroImage, "/manus-storage/kaba-property-ngor_4da8d1c6.jpg"],
     video: "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
   },
   {
@@ -57,7 +57,7 @@ const properties = [
     price: "1 200 000 FCFA / mois",
     image: heroImage,
     tag: "Adresse rare",
-    media: [heroImage, "/manus-storage/kaba-property-almadies_64bab9ed.jpg", "/manus-storage/kaba-land-dakar_98970f8e.jpg"],
+    media: [heroImage, "/manus-storage/kaba-property-almadies_0d3857f0.jpg", "/manus-storage/kaba-land-dakar_84d45584.jpg"],
     video: "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
   },
   {
@@ -66,9 +66,9 @@ const properties = [
     title: "Une lumière sur le jardin",
     location: "Almadies 2 · Dakar",
     price: "185 000 000 FCFA",
-    image: "/manus-storage/kaba-property-almadies_64bab9ed.jpg",
+    image: "/manus-storage/kaba-property-almadies_0d3857f0.jpg",
     tag: "Nouvelle adresse",
-    media: ["/manus-storage/kaba-property-almadies_64bab9ed.jpg", heroImage, "/manus-storage/kaba-property-ngor_3d2ef10e.jpg"],
+    media: ["/manus-storage/kaba-property-almadies_0d3857f0.jpg", heroImage, "/manus-storage/kaba-property-ngor_4da8d1c6.jpg"],
     video: "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
   },
   {
@@ -77,9 +77,9 @@ const properties = [
     title: "Habiter au rythme de la mer",
     location: "Corniche Ouest · Dakar",
     price: "Sur demande",
-    image: "/manus-storage/kaba-property-ngor_3d2ef10e.jpg",
+    image: "/manus-storage/kaba-property-ngor_4da8d1c6.jpg",
     tag: "Vue ouverte",
-    media: ["/manus-storage/kaba-property-ngor_3d2ef10e.jpg", "/manus-storage/kaba-land-dakar_98970f8e.jpg", heroImage],
+    media: ["/manus-storage/kaba-property-ngor_4da8d1c6.jpg", "/manus-storage/kaba-land-dakar_84d45584.jpg", heroImage],
     video: "https://storage.googleapis.com/coverr-main/mp4/Mt_Baker.mp4",
   },
 ];
