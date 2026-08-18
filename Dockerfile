@@ -8,8 +8,7 @@ COPY . .
 
 RUN npm install -g corepack@latest \
   && corepack pnpm install \
-  && corepack pnpm run build \
-  && corepack pnpm prune --prod
+  && corepack pnpm run build
 
 EXPOSE 3000
 

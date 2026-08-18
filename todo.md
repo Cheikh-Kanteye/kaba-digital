@@ -293,3 +293,29 @@
 
 - [x] Ajouter une validation CI qui exécute `docker compose config`, `docker build` et `nginx -t` pour les fichiers de production.
 - [x] Enregistrer un checkpoint Docker/Nginx après ajout de cette validation reproductible.
+
+## Migration stockage Cloudinary
+
+- [ ] Auditer les uploads et références `/manus-storage/` utilisés par les biens.
+- [ ] Configurer les secrets Cloudinary côté serveur et documenter les variables Docker.
+- [ ] Remplacer l’upload média par Cloudinary et enregistrer les URLs/métadonnées dans MongoDB.
+- [ ] Tester images, vidéos, erreurs et build, puis créer un checkpoint.
+
+## Migration legacy MONGO_URI2 et Cloudinary
+
+- [ ] Auditer MONGO_URI2 en lecture seule et inventorier ses collections, biens, utilisateurs, demandes et médias.
+- [ ] Définir le mapping legacy vers les collections actuelles sans supprimer ni modifier la source.
+- [ ] Préparer un script de migration idempotent avec rapport, dry-run et nettoyage des doublons.
+- [ ] Utiliser Cloudinary pour les nouveaux uploads et documenter la stratégie des médias legacy.
+- [ ] Tester la migration et le stockage média, puis créer un checkpoint.
+
+- [ ] Corriger le Dockerfile : conserver les dépendances nécessaires au runtime (`vite` est encore importé par le serveur bundlé).
+- [ ] Revalider le démarrage de production et la configuration Cloudinary après correction de l’image.
+
+- [x] Reporter la migration MONGO_URI2 après échec d’authentification Atlas, sans modifier la source legacy.
+- [ ] Continuer Cloudinary et Docker indépendamment des données legacy.
+
+## Correction déploiement Docker
+
+- [x] Conserver les dépendances nécessaires au runtime dans l’image Docker et supprimer le `prune --prod` fautif.
+- [x] Vérifier le build et le démarrage production, puis créer un checkpoint corrigé.
