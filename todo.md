@@ -383,3 +383,10 @@
 - [x] Remplacer les champs URL image et vidéo par une zone unique drag-and-drop.
 - [x] Gérer plusieurs images et vidéos, aperçus, progression et suppression avant sauvegarde.
 - [x] Vérifier le flux Cloudinary, le responsive, les tests et publier un checkpoint.
+
+## Données enrichies issues de l’ancien site
+
+- [x] Comparer les champs legacy visibles avec les modèles Mongo et les composants actuels.
+- [x] Ajouter les métadonnées de bien, statistiques d’annonce et profil courtier dans le flux de création.
+- [x] Afficher ces informations dans la sélection et les espaces professionnels.
+- [x] Vérifier compatibilité, tests, responsive et publier un checkpoint.

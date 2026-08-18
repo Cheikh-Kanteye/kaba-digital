@@ -29,6 +29,10 @@ const propertyInput = z.object({
   priceLabel: z.string().trim().min(1).max(80),
   media: z.array(mediaItem).min(1).max(12),
   description: z.string().trim().max(1200).optional(),
+  isNew: z.boolean().optional(),
+  bedrooms: z.number().int().nonnegative().max(99).optional(),
+  bathrooms: z.number().int().nonnegative().max(99).optional(),
+  surface: z.string().trim().max(40).optional(),
   status: propertyStatus.default("draft"),
 });
 
@@ -92,20 +96,30 @@ export const kabaRouter = router({
 
   createProperty: protectedProcedure.input(propertyInput).mutation(async ({ ctx, input }) => {
     const { properties } = await getKabaCollections();
-    const now = new Date();
-    const property: KabaPropertyDocument = {
-      id: nanoid(12),
-      ownerId: String(ctx.user.id),
-      title: input.title,
-      type: input.type,
-      mode: input.mode,
-      location: input.location,
-      priceLabel: input.priceLabel,
-      media: input.media,
-      status: input.status,
-      createdAt: now,
-      updatedAt: now,
-    };
+      const now = new Date();
+      const ownerId = String(ctx.user.id);
+      const owner = await getKabaCollections().then(({ users }) => users.findOne({ openId: ownerId }, { projection: { _id: 0, name: 1, profile: 1, phone: 1, avatarUrl: 1 } }));
+      const property: KabaPropertyDocument = {
+        id: nanoid(12),
+        ownerId,
+        title: input.title,
+        type: input.type,
+        mode: input.mode,
+        location: input.location,
+        priceLabel: input.priceLabel,
+        description: input.description,
+        isNew: input.isNew,
+        views: 0,
+        bedrooms: input.bedrooms,
+        bathrooms: input.bathrooms,
+        surface: input.surface,
+        listedAt: now,
+        ownerSnapshot: { name: owner?.name || ctx.user.name || ctx.user.email || undefined, profile: owner?.profile, phone: owner?.phone },
+        media: input.media,
+        status: input.status,
+        createdAt: now,
+        updatedAt: now,
+      };
     await properties.insertOne(property);
     return { id: property.id, property };
   }),

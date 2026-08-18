@@ -34,6 +34,19 @@ export type KabaPropertyDocument = {
   mode: "Vente" | "Location";
   location: string;
   priceLabel: string;
+  description?: string;
+  isNew?: boolean;
+  views?: number;
+  bedrooms?: number;
+  bathrooms?: number;
+  surface?: string;
+  listedAt?: Date;
+  ownerSnapshot?: {
+    name?: string;
+    profile?: "Agent immobilier" | "Courtier";
+    phone?: string;
+    avatarUrl?: string;
+  };
   media: Array<{
     kind: "image" | "video";
     url: string;

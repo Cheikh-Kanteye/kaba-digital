@@ -56,8 +56,9 @@ describe("kabaRouter", () => {
     const caller = kabaRouter.createCaller(ctx as never);
     const uploaded = await caller.uploadMedia({ filename: "villa.jpg", mimeType: "image/jpeg", data: `data:image/jpeg;base64,${Buffer.from("image").toString("base64")}` });
     expect(uploaded).toMatchObject({ publicId: "kaba/properties/7/villa", format: "jpg", bytes: 4096, width: 1600, height: 900 });
-    const created = await caller.createProperty({ ...propertyInput, media: [{ ...uploaded, alt: "Villa des Almadies" }] });
-    expect(collections.properties.insertOne).toHaveBeenCalledWith(expect.objectContaining({ media: [expect.objectContaining({ publicId: "kaba/properties/7/villa", bytes: 4096, width: 1600, height: 900 })] }));
+    collections.users.findOne.mockResolvedValue({ openId: "open-7", name: "Awa Ndiaye", profile: "Courtier", phone: "+221 77 000 00 00" });
+    const created = await caller.createProperty({ ...propertyInput, description: "Villa lumineuse aux Almadies", isNew: true, bedrooms: 4, bathrooms: 3, surface: "240 m²", media: [{ ...uploaded, alt: "Villa des Almadies" }] });
+    expect(collections.properties.insertOne).toHaveBeenCalledWith(expect.objectContaining({ description: "Villa lumineuse aux Almadies", isNew: true, bedrooms: 4, bathrooms: 3, surface: "240 m²", views: 0, ownerSnapshot: { name: "Awa Ndiaye", profile: "Courtier", phone: "+221 77 000 00 00" }, media: [expect.objectContaining({ publicId: "kaba/properties/7/villa", bytes: 4096, width: 1600, height: 900 })] }));
     const cursor = { sort: vi.fn(), limit: vi.fn(), toArray: vi.fn().mockResolvedValue([created.property]) };
     cursor.sort.mockReturnValue(cursor);
     cursor.limit.mockReturnValue(cursor);
