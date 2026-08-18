@@ -11,6 +11,10 @@ vi.mock("./mongodbCollections", () => ({
   getKabaCollections: vi.fn(async () => collections),
 }));
 
+vi.mock("./cloudinary", () => ({
+  uploadToCloudinary: vi.fn(async () => ({ resourceType: "image", secureUrl: "https://res.cloudinary.com/kaba/image/upload/v1/villa.jpg", publicId: "kaba/properties/7/villa", format: "jpg", bytes: 4096, width: 1600, height: 900 })),
+}));
+
 const ctx = {
   req: {},
   res: {},
@@ -46,6 +50,20 @@ describe("kabaRouter", () => {
     const result = await caller.profile.update({ profile: "Courtier", city: "Dakar", phone: "+221 77 000 00 00" });
     expect(result.success).toBe(true);
     expect(collections.users.updateOne).toHaveBeenCalledWith(expect.objectContaining({ openId: "open-7" }), expect.objectContaining({ $set: expect.objectContaining({ profile: "Courtier", city: "Dakar" }) }), expect.objectContaining({ upsert: true }));
+  });
+
+  it("transfère les métadonnées Cloudinary de l’upload au document du bien", async () => {
+    const caller = kabaRouter.createCaller(ctx as never);
+    const uploaded = await caller.uploadMedia({ filename: "villa.jpg", mimeType: "image/jpeg", data: `data:image/jpeg;base64,${Buffer.from("image").toString("base64")}` });
+    expect(uploaded).toMatchObject({ publicId: "kaba/properties/7/villa", format: "jpg", bytes: 4096, width: 1600, height: 900 });
+    const created = await caller.createProperty({ ...propertyInput, media: [{ ...uploaded, alt: "Villa des Almadies" }] });
+    expect(collections.properties.insertOne).toHaveBeenCalledWith(expect.objectContaining({ media: [expect.objectContaining({ publicId: "kaba/properties/7/villa", bytes: 4096, width: 1600, height: 900 })] }));
+    const cursor = { sort: vi.fn(), limit: vi.fn(), toArray: vi.fn().mockResolvedValue([created.property]) };
+    cursor.sort.mockReturnValue(cursor);
+    cursor.limit.mockReturnValue(cursor);
+    collections.properties.find.mockReturnValue(cursor);
+    const reloaded = await caller.ownerProperties();
+    expect(reloaded[0]?.media[0]).toMatchObject({ publicId: "kaba/properties/7/villa", format: "jpg", bytes: 4096, width: 1600, height: 900 });
   });
 
   it("crée, modifie, publie et supprime un bien appartenant à l’utilisateur", async () => {

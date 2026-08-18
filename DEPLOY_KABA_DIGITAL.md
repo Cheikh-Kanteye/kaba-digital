@@ -22,7 +22,7 @@ cp .env.production.example .env.production
 chmod 600 .env.production
 ```
 
-Renseigner au minimum `DATABASE_URL`, `MONGODB_URI`, `JWT_SECRET`, les variables de session/OAuth encore utilisées par le serveur, les clés Forge et `PUBLIC_ORIGIN=https://kaba.digital`. Les valeurs secrètes ne doivent jamais être écrites dans Git, dans le Dockerfile ou dans Nginx.
+Renseigner au minimum `DATABASE_URL`, `MONGODB_URI`, `JWT_SECRET`, les variables de session/OAuth encore utilisées par le serveur, `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`, les clés Forge réellement utilisées et `PUBLIC_ORIGIN=https://kaba.digital`. Les valeurs secrètes ne doivent jamais être écrites dans Git, dans le Dockerfile ou dans Nginx. Les uploads d’images et de vidéos sont effectués par le serveur vers Cloudinary ; MongoDB ne conserve que les URLs et métadonnées du média.
 
 ## 3. Émettre le premier certificat
 
@@ -71,11 +71,15 @@ docker compose exec nginx nginx -t
 
 Le conteneur applicatif écoute sur le port interne 3000. Nginx est le seul service exposé publiquement sur 80 et 443. MongoDB et MySQL restent externes et doivent autoriser l’IP du serveur avec TLS lorsque le fournisseur le permet.
 
-## 6. Sécurité avant mise en production
+## 6. Stockage média Cloudinary
+
+Les nouveaux médias sont envoyés par la mutation serveur `uploadMedia`, qui signe la requête avec `CLOUDINARY_API_SECRET`. Le navigateur ne reçoit jamais ce secret. Les URLs `secure_url`, le type de ressource et les métadonnées utiles sont ensuite enregistrés dans le document du bien MongoDB. Les médias legacy restent inchangés tant que l’accès `MONGO_URI2` n’est pas rétabli.
+
+## 7. Sécurité avant mise en production
 
 Utiliser un mot de passe MongoDB dédié à la production, faire tourner les secrets de test déjà partagés, limiter l’allowlist réseau MongoDB à l’IP du serveur et conserver `.env.production` hors du dépôt. Le mot de passe admin temporaire doit également être changé avant l’ouverture publique. Configurer un pare-feu qui n’autorise que SSH administré, HTTP et HTTPS.
 
 
-## 7. Validation automatisée
+## 8. Validation automatisée
 
 Le sandbox de développement ne fournit pas le moteur Docker ni le binaire Nginx, donc l’image et la syntaxe Nginx ne peuvent pas être exécutées localement ici. Le workflow `.github/workflows/validate-deployment.yml` réalise ces contrôles sur un runner Ubuntu avec Docker : configuration Compose, build de l’image, certificat de test éphémère et `nginx -t` pour les configurations HTTPS et bootstrap. Le certificat généré par la CI n’est jamais utilisé en production.

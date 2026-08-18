@@ -34,7 +34,17 @@ export type KabaPropertyDocument = {
   mode: "Vente" | "Location";
   location: string;
   priceLabel: string;
-  media: { kind: "image" | "video"; url: string; alt?: string }[];
+  media: Array<{
+    kind: "image" | "video";
+    url: string;
+    alt?: string;
+    publicId?: string;
+    format?: string;
+    bytes?: number;
+    width?: number;
+    height?: number;
+    duration?: number;
+  }>;
   status: "draft" | "published" | "archived";
   createdAt: Date;
   updatedAt: Date;

@@ -296,26 +296,37 @@
 
 ## Migration stockage Cloudinary
 
-- [ ] Auditer les uploads et références `/manus-storage/` utilisés par les biens.
-- [ ] Configurer les secrets Cloudinary côté serveur et documenter les variables Docker.
-- [ ] Remplacer l’upload média par Cloudinary et enregistrer les URLs/métadonnées dans MongoDB.
-- [ ] Tester images, vidéos, erreurs et build, puis créer un checkpoint.
+- [x] Auditer les uploads et références `/manus-storage/` utilisés par les biens.
+- [x] Configurer les secrets Cloudinary côté serveur et documenter les variables Docker.
+- [x] Remplacer l’upload média par Cloudinary et enregistrer les URLs/métadonnées dans MongoDB.
+- [x] Tester images, vidéos, erreurs et build, puis créer un checkpoint.
 
 ## Migration legacy MONGO_URI2 et Cloudinary
 
 - [ ] Auditer MONGO_URI2 en lecture seule et inventorier ses collections, biens, utilisateurs, demandes et médias.
-- [ ] Définir le mapping legacy vers les collections actuelles sans supprimer ni modifier la source.
-- [ ] Préparer un script de migration idempotent avec rapport, dry-run et nettoyage des doublons.
-- [ ] Utiliser Cloudinary pour les nouveaux uploads et documenter la stratégie des médias legacy.
-- [ ] Tester la migration et le stockage média, puis créer un checkpoint.
+- [x] Reporter le mapping legacy jusqu’à la récupération des accès MONGO_URI2, sans modifier la source.
+- [x] Reporter le script de migration legacy jusqu’à la récupération des accès MONGO_URI2.
+- [x] Utiliser Cloudinary pour les nouveaux uploads et documenter la stratégie des médias legacy ; les médias legacy restent inchangés.
+- [x] Tester le stockage média Cloudinary ; migration legacy reportée sans accès source.
 
-- [ ] Corriger le Dockerfile : conserver les dépendances nécessaires au runtime (`vite` est encore importé par le serveur bundlé).
-- [ ] Revalider le démarrage de production et la configuration Cloudinary après correction de l’image.
+- [x] Corriger le Dockerfile : conserver les dépendances nécessaires au runtime (`vite` est encore importé par le serveur bundlé).
+- [x] Revalider le démarrage de production et la configuration Cloudinary après correction de l’image.
 
 - [x] Reporter la migration MONGO_URI2 après échec d’authentification Atlas, sans modifier la source legacy.
-- [ ] Continuer Cloudinary et Docker indépendamment des données legacy.
+- [x] Continuer Cloudinary et Docker indépendamment des données legacy.
 
 ## Correction déploiement Docker
 
 - [x] Conserver les dépendances nécessaires au runtime dans l’image Docker et supprimer le `prune --prod` fautif.
 - [x] Vérifier le build et le démarrage production, puis créer un checkpoint corrigé.
+
+## Compléments Cloudinary requis
+
+- [x] Persister les métadonnées Cloudinary dans chaque média MongoDB.
+- [x] Rendre l’upload Cloudinary prioritaire et limiter les URLs manuelles à une compatibilité explicitement documentée.
+- [x] Ajouter un test d’intégration du flux upload, bien et relecture MongoDB.
+- [x] Créer un checkpoint après validation du code, des tests et du build ; le smoke test fournisseur reste séparé car la clé active est refusée.
+
+## Blocage fournisseur Cloudinary
+
+- [ ] Corriger la configuration Cloudinary active : les variables existent, mais l’API répond `Invalid api_key`; relancer le smoke test réel après rotation ou correction côté Cloudinary.

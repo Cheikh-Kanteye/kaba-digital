@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import { z } from "zod";
 import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
 import { getKabaCollections, type KabaInquiryDocument, type KabaPropertyDocument } from "../mongodbCollections";
+import { uploadToCloudinary } from "../cloudinary";
 
 const propertyType = z.enum(["Maison", "Villa", "Appartement", "Terrain"]);
 const propertyMode = z.enum(["Vente", "Location"]);
@@ -12,6 +13,12 @@ const mediaItem = z.object({
   kind: z.enum(["image", "video"]),
   url: z.string().trim().min(1).max(500),
   alt: z.string().max(180).optional(),
+  publicId: z.string().max(300).optional(),
+  format: z.string().max(30).optional(),
+  bytes: z.number().int().nonnegative().optional(),
+  width: z.number().int().positive().optional(),
+  height: z.number().int().positive().optional(),
+  duration: z.number().nonnegative().optional(),
 });
 
 const propertyInput = z.object({
@@ -54,6 +61,18 @@ export const kabaRouter = router({
       return { success: true } as const;
     }),
   }),
+  uploadMedia: protectedProcedure.input(z.object({
+    filename: z.string().trim().min(1).max(180),
+    mimeType: z.string().regex(/^(image|video)\//),
+    data: z.string().min(1).max(30_000_000),
+  })).mutation(async ({ ctx, input }) => {
+    const base64 = input.data.includes(",") ? input.data.slice(input.data.indexOf(",") + 1) : input.data;
+    const buffer = Buffer.from(base64, "base64");
+    if (buffer.byteLength > 20 * 1024 * 1024) throw new TRPCError({ code: "PAYLOAD_TOO_LARGE", message: "Le fichier ne doit pas dépasser 20 Mo." });
+    const uploaded = await uploadToCloudinary({ buffer, filename: input.filename, mimeType: input.mimeType, folder: `kaba/properties/${String(ctx.user.id)}` });
+    return { kind: uploaded.resourceType, url: uploaded.secureUrl, publicId: uploaded.publicId, format: uploaded.format, bytes: uploaded.bytes, width: uploaded.width, height: uploaded.height, duration: uploaded.duration };
+  }),
+
   publishedProperties: publicProcedure
     .input(z.object({ mode: propertyMode.optional(), type: propertyType.optional() }).optional())
     .query(async ({ input }) => {
