@@ -347,3 +347,9 @@
 - [x] Augmenter les textes secondaires et micro-libellés trop petits sur l’accueil et la sélection.
 - [x] Renforcer les contrastes et la lisibilité mobile sans dégrader la hiérarchie éditoriale.
 - [x] Vérifier les captures desktop/mobile, les tests et publier un checkpoint.
+
+## Lisibilité globale de l’application
+
+- [x] Auditer les tailles de texte et contrastes sur Auth, dashboard professionnel et console admin.
+- [x] Harmoniser l’échelle typographique et les labels sur toutes les interfaces responsive.
+- [x] Vérifier desktop/mobile, tests, captures et publier un checkpoint global de lisibilité.
