@@ -927,3 +927,22 @@ button:disabled, .dashboard-primary:disabled { cursor: wait; opacity: .62; }
   .admin-shell .admin-inquiry p,
   .admin-shell .admin-state-panel { font-size: 16px; line-height: 1.7; }
 }
+
+/* Dashboard pleine largeur : exploiter l’espace disponible après le rail latéral. */
+.dashboard-content { width: 100%; max-width: none; }
+.dashboard-property-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 2.2vw, 42px); }
+.dashboard-media-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(18px, 2vw, 34px); }
+.dashboard-table-head, .dashboard-table-row { grid-template-columns: minmax(280px, 2.8fr) 1fr .9fr 1.3fr 42px; }
+.dashboard-toolbar { width: 100%; }
+.profile-card { max-width: none; width: 100%; }
+@media (max-width: 1200px) {
+  .dashboard-property-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dashboard-media-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  .dashboard-content { width: 100%; max-width: none; }
+  .dashboard-media-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .dashboard-property-grid, .dashboard-media-grid { grid-template-columns: 1fr; }
+}

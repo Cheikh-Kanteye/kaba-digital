@@ -371,3 +371,9 @@
 - [x] Copier les logos, images hero et vidéo critique dans `client/public/assets`.
 - [x] Remplacer les références par des chemins racine `/assets/...` et vérifier le fallback image.
 - [x] Tester les URLs dans le build de production et republier la correction.
+
+## Dashboard pleine largeur
+
+- [x] Auditer les max-width, marges et grilles qui limitent le dashboard professionnel.
+- [x] Étendre le contenu principal et les composants sur la largeur disponible sans créer de débordement.
+- [x] Vérifier desktop/mobile, tests et publier un checkpoint.
