@@ -1,7 +1,9 @@
 // Direction artistique Kaba : maison d’édition africaine, éditoriale, chaleureuse et précise.
 // Ce fichier privilégie les grandes respirations, les repères typographiques et des interactions discrètes.
 
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import type { FormEvent } from "react";
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Menu, Pause, Play, Search, SlidersHorizontal, X } from "lucide-react";
 import { trpc } from "@/lib/trpc";
@@ -10,6 +12,8 @@ const heroImage = "/manus-storage/kaba-hero-dakar_28cefd79.jpg";
 const heroVideo = "/manus-storage/villa-background_cdfa3e9a.mp4";
 const monogram = "/manus-storage/icon-kaba_e91dc42c.png";
 const headerLogo = "/manus-storage/header-kaba-transparent_4fab226f.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const properties = [
   {
@@ -87,6 +91,7 @@ const services = [
 ];
 
 export default function Home() {
+  const pageRef = useRef<HTMLElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [propertyType, setPropertyType] = useState("Tous les biens");
@@ -95,6 +100,31 @@ export default function Home() {
   const [activeMedia, setActiveMedia] = useState<Record<string, number>>({});
   const [playingVideo, setPlayingVideo] = useState<string | null>(null);
   const publishedQuery = trpc.kaba.publishedProperties.useQuery({});
+
+  useLayoutEffect(() => {
+    const page = pageRef.current;
+    if (!page) return;
+    const context = gsap.context(() => {
+      const media = gsap.matchMedia();
+      media.add("(prefers-reduced-motion: no-preference)", () => {
+        const intro = gsap.timeline({ defaults: { ease: "power3.out" } });
+        intro.from(".site-header", { y: -24, autoAlpha: 0, duration: 0.8 })
+          .from(".hero-copy .eyebrow", { y: 18, autoAlpha: 0, duration: 0.5 }, "-=0.35")
+          .from(".hero-copy h1", { y: 46, autoAlpha: 0, duration: 0.9 }, "-=0.28")
+          .from(".hero-copy .hero-intro, .hero-copy .hero-link", { y: 22, autoAlpha: 0, duration: 0.6, stagger: 0.08 }, "-=0.45")
+          .from(".hero-meta", { autoAlpha: 0, duration: 0.5 }, "-=0.2");
+        gsap.fromTo(".hero-image", { scale: 1.08 }, { scale: 1, duration: 2.2, ease: "power2.out" });
+        gsap.utils.toArray<HTMLElement>(".search-band, .selection-section, .approach-section, .services-section, .contact-section").forEach((section) => {
+          gsap.from(section, { y: 44, autoAlpha: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 82%", once: true } });
+        });
+        gsap.from(".property-card", { y: 36, autoAlpha: 0, duration: 0.7, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".property-grid", start: "top 78%", once: true } });
+        gsap.from(".service-row", { x: -28, autoAlpha: 0, duration: 0.65, stagger: 0.12, ease: "power3.out", scrollTrigger: { trigger: ".services-list", start: "top 80%", once: true } });
+        gsap.to(".scroll-line", { scaleX: 0.35, transformOrigin: "left center", duration: 1.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+      });
+      return () => media.revert();
+    }, page);
+    return () => context.revert();
+  }, []);
   const featuredProperties = publishedQuery.data?.length ? publishedQuery.data.slice(0, 6).map((property, index) => {
     const images = property.media.filter((item) => item.kind === "image").map((item) => item.url);
     const firstImage = images[0] || heroImage;
@@ -123,7 +153,7 @@ export default function Home() {
   }
 
   return (
-    <main className="kaba-site">
+    <main className="kaba-site" ref={pageRef}>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="Kaba, retour à l'accueil">
           <img className="brand-logo" src={headerLogo} alt="Kaba" />

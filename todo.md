@@ -334,3 +334,10 @@
 ## Résultat audit legacy
 
 - [x] Tenter l’inventaire MONGO_URI2 en lecture seule ; l’accès est bloqué avant connexion par un paramètre `tls/ssl` invalide dans la chaîne fournie, sans lecture ni modification de la base source.
+
+## Animations GSAP premium
+
+- [x] Installer GSAP et définir un système d’animation cohérent avec la direction éditoriale Kaba.
+- [x] Animer le hero, les transitions de sections, les cartes de sélection et les interactions principales.
+- [x] Respecter `prefers-reduced-motion`, le responsive et les performances.
+- [x] Ajouter ou mettre à jour les tests, vérifier le rendu et publier un checkpoint GSAP.

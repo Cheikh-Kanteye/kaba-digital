@@ -1,7 +1,9 @@
 // Direction artistique Kaba : maison d’édition africaine, sélection éditoriale et détails média premium.
 // Cette page transforme le catalogue en parcours de découverte, avec filtres simples et fiches de biens.
 
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, X } from "lucide-react";
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
@@ -21,8 +23,10 @@ type CatalogProperty = {
 };
 
 const filters = ["Tous les biens", "Maisons & Villas", "Appartements", "Terrains"];
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Selection() {
+  const pageRef = useRef<HTMLElement>(null);
   const [mode, setMode] = useState("Tous");
   const publishedQuery = trpc.kaba.publishedProperties.useQuery({});
   const catalogue: CatalogProperty[] = (publishedQuery.data ?? []).map((property, index) => ({
@@ -53,13 +57,33 @@ export default function Selection() {
     });
   };
 
+  useLayoutEffect(() => {
+    const page = pageRef.current;
+    if (!page) return;
+    const context = gsap.context(() => {
+      const mediaQuery = gsap.matchMedia();
+      mediaQuery.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.timeline({ defaults: { ease: "power3.out" } })
+          .from(".selection-hero-top", { y: -18, autoAlpha: 0, duration: 0.6 })
+          .from(".selection-hero-copy .eyebrow", { y: 18, autoAlpha: 0, duration: 0.45 }, "-=0.25")
+          .from(".selection-hero-copy h1", { y: 42, autoAlpha: 0, duration: 0.8 }, "-=0.2")
+          .from(".selection-hero-copy > p:last-child", { y: 18, autoAlpha: 0, duration: 0.55 }, "-=0.35");
+        gsap.from(".catalogue-top", { y: 34, autoAlpha: 0, duration: 0.8, scrollTrigger: { trigger: ".catalogue-top", start: "top 82%", once: true } });
+        gsap.from(".catalogue-card", { y: 32, autoAlpha: 0, duration: 0.65, stagger: 0.09, ease: "power3.out", scrollTrigger: { trigger: ".catalogue-grid", start: "top 80%", once: true } });
+        gsap.from(".catalogue-filters", { y: 22, autoAlpha: 0, duration: 0.55, scrollTrigger: { trigger: ".catalogue-filters", start: "top 86%", once: true } });
+      });
+      return () => mediaQuery.revert();
+    }, page);
+    return () => context.revert();
+  }, []);
+
   const visibleProperties = useMemo(() => catalogue.filter((property) => {
     const modeMatch = mode === "Tous" || property.mode === mode;
     const typeMatch = type === "Tous les biens" || (type === "Maisons & Villas" && ["Maison", "Villa"].includes(property.type)) || property.type === type.replace("s", "");
     return modeMatch && typeMatch;
   }), [catalogue, mode, type]);
 
-  return <main className="selection-page">
+  return <main className="selection-page" ref={pageRef}>
     <header className="selection-hero"><div className="selection-hero-top"><Link href="/" className="back-link">← Kaba</Link><span>DAKAR / SÉNÉGAL</span></div><div className="selection-hero-copy"><p className="eyebrow"><span>07</span> La sélection</p><h1>Des lieux à<br /><em>regarder.</em></h1><p>Une collection mouvante de maisons, d’appartements et de terrains choisis pour leur adresse, leur lumière et leur potentiel.</p></div></header>
     <div className="senegal-transition" aria-hidden="true"><span className="senegal-green" /><span className="senegal-yellow"><i /></span><span className="senegal-red" /></div>
     <section className="selection-catalogue"><div className="catalogue-top"><div><p className="eyebrow"><span>08</span> Le catalogue</p><h2>Choisir<br /><em>son rythme.</em></h2></div><p className="catalogue-note">Chaque propriété est présentée avec ses images, son film et les repères essentiels pour décider avec calme.</p></div>
