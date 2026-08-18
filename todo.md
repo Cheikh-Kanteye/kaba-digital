@@ -396,3 +396,10 @@
 - [x] Vérifier le compte `cheikhkante.contact@gmail.com` et les données existantes avant insertion.
 - [x] Insérer un jeu cohérent de biens et métadonnées de démonstration sans faux avis clients.
 - [x] Vérifier la sélection publique, le dashboard et la console admin après seed ; le seed a retourné succès, mais une relecture Mongo secondaire a expiré sur le réseau Atlas.
+
+## Recherche accueil des biens
+
+- [x] Auditer la recherche actuelle et le contrat des biens publiés.
+- [x] Ajouter une recherche par localisation et tranche de prix connectée à MongoDB.
+- [x] Afficher les résultats, états vides et liens vers les fiches de sélection.
+- [x] Vérifier responsive, tests, build et publier un checkpoint.

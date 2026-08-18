@@ -15,6 +15,11 @@ const headerLogo = "/assets/kaba/header-kaba-transparent.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
+function parsePriceLabel(value: string) {
+  const normalized = value.replace(/\s/g, "").replace(/[^0-9]/g, "");
+  return normalized ? Number(normalized) : null;
+}
+
 const properties = [
   {
     number: "01",
@@ -95,6 +100,7 @@ export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [propertyType, setPropertyType] = useState("Tous les biens");
+  const [priceRange, setPriceRange] = useState("Tous les budgets");
   const [showMore, setShowMore] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [activeMedia, setActiveMedia] = useState<Record<string, number>>({});
@@ -125,7 +131,14 @@ export default function Home() {
     }, page);
     return () => context.revert();
   }, []);
-  const featuredProperties = publishedQuery.data?.length ? publishedQuery.data.slice(0, 6).map((property, index) => {
+  const featuredProperties = publishedQuery.data?.length ? publishedQuery.data.filter((property) => {
+    const normalizedQuery = query.trim().toLowerCase();
+    const locationMatch = !normalizedQuery || `${property.location} ${property.title}`.toLowerCase().includes(normalizedQuery);
+    const typeMatch = propertyType === "Tous les biens" || (propertyType === "Une maison" && ["Maison", "Villa"].includes(property.type)) || (propertyType === "Un appartement" && property.type === "Appartement") || (propertyType === "Un terrain" && property.type === "Terrain");
+    const price = parsePriceLabel(property.priceLabel);
+    const priceMatch = priceRange === "Tous les budgets" || (priceRange === "Moins de 100 millions" && price !== null && price < 100_000_000) || (priceRange === "100 à 200 millions" && price !== null && price >= 100_000_000 && price <= 200_000_000) || (priceRange === "Plus de 200 millions" && price !== null && price > 200_000_000) || (priceRange === "Location" && property.mode === "Location");
+    return locationMatch && typeMatch && priceMatch;
+  }).slice(0, 6).map((property, index) => {
     const images = property.media.filter((item) => item.kind === "image").map((item) => item.url);
     const firstImage = images[0] || heroImage;
     return {
@@ -143,8 +156,9 @@ export default function Home() {
 
   const resultLabel = useMemo(() => {
     if (!submitted) return "Explorer la sélection";
-    return query ? `Résultats pour ${query}` : "Sélection mise à jour";
-  }, [query, submitted]);
+    const filters = [query && `Résultats pour ${query}`, propertyType !== "Tous les biens" && propertyType, priceRange !== "Tous les budgets" && priceRange].filter(Boolean);
+    return filters.length ? filters.join(" · ") : "Sélection mise à jour";
+  }, [query, propertyType, priceRange, submitted]);
 
   function handleSearch(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -193,6 +207,7 @@ export default function Home() {
         <form className="search-form" onSubmit={handleSearch}>
           <label><span>Où souhaitez-vous vivre ?</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Quartier, ville ou région" /></label>
           <label><span>Je cherche</span><select value={propertyType} onChange={(event) => setPropertyType(event.target.value)}><option>Tous les biens</option><option>Une maison</option><option>Un appartement</option><option>Un terrain</option></select><ChevronDown size={17} /></label>
+          <label><span>Budget</span><select value={priceRange} onChange={(event) => setPriceRange(event.target.value)}><option>Tous les budgets</option><option>Moins de 100 millions</option><option>100 à 200 millions</option><option>Plus de 200 millions</option><option>Location</option></select><ChevronDown size={17} /></label>
           <button type="submit" className="search-button"><Search size={18} /> <span>Rechercher</span></button>
         </form>
       </section>
