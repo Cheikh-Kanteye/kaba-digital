@@ -390,3 +390,9 @@
 - [x] Ajouter les métadonnées de bien, statistiques d’annonce et profil courtier dans le flux de création.
 - [x] Afficher ces informations dans la sélection et les espaces professionnels.
 - [x] Vérifier compatibilité, tests, responsive et publier un checkpoint.
+
+## Seed de démonstration admin
+
+- [x] Vérifier le compte `cheikhkante.contact@gmail.com` et les données existantes avant insertion.
+- [x] Insérer un jeu cohérent de biens et métadonnées de démonstration sans faux avis clients.
+- [x] Vérifier la sélection publique, le dashboard et la console admin après seed ; le seed a retourné succès, mais une relecture Mongo secondaire a expiré sur le réseau Atlas.
