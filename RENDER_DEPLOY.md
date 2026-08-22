@@ -18,10 +18,12 @@ Render fournit automatiquement la variable `PORT`. Le serveur Kaba l’utilise d
 
 Dans Render, choisissez **New → Blueprint** et sélectionnez le dépôt GitHub `Cheikh-Kanteye/kaba-digital`. Render détectera `render.yaml`. Si le service existe déjà en Static Site, créez un nouveau **Web Service** depuis le même dépôt ou recréez le service avec le type Web Service ; changer uniquement le dossier de publication ne suffit pas.
 
-Les trois secrets Cloudinary, l’URI MongoDB et l’identité propriétaire doivent être ajoutés dans **Environment**. Les valeurs sensibles ne doivent pas être écrites dans `render.yaml` ni dans GitHub.
+Les trois secrets Cloudinary, l’URI MongoDB et l’identité propriétaire doivent être ajoutés dans **Environment**. Les valeurs sensibles ne doivent pas être écrites dans `render.yaml` ni dans GitHub. Le serveur OAuth attendu par l’infrastructure est déclaré avec `OAUTH_SERVER_URL=https://api.manus.im`; il ne faut pas le remplacer par l’URL publique Render `https://kaba-digital.onrender.com`.
 
 | Variable | Requise | Utilisation |
 |---|---:|---|
+| `OAUTH_SERVER_URL` | Oui | URL du serveur OAuth : `https://api.manus.im` |
+| `VITE_OAUTH_PORTAL_URL` | Non | Portail OAuth : `https://auth.manus.im` |
 | `MONGODB_URI` | Oui | Connexion MongoDB Atlas |
 | `JWT_SECRET` | Oui | Sessions locales ; le Blueprint peut générer une valeur |
 | `CLOUDINARY_CLOUD_NAME` | Oui | Environnement média Cloudinary |

@@ -409,3 +409,9 @@
 - [x] Corriger la configuration Render : build command, publish directory et démarrage du serveur.
 - [x] Vérifier le port dynamique Render, les assets publics et les variables d’environnement requises.
 - [x] Documenter les paramètres Render et valider le build de production avant publication du checkpoint.
+
+## Correction OAuth Render
+
+- [x] Déclarer `OAUTH_SERVER_URL` dans le Blueprint Render et la documentation.
+- [x] Vérifier que l’authentification locale reste le parcours utilisé par l’application.
+- [x] Valider le build et publier la correction de configuration.
