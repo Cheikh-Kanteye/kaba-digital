@@ -403,3 +403,9 @@
 - [x] Ajouter une recherche par localisation et tranche de prix connectée à MongoDB.
 - [x] Afficher les résultats, états vides et liens vers les fiches de sélection.
 - [x] Vérifier responsive, tests, build et publier un checkpoint.
+
+## Déploiement Render
+
+- [x] Corriger la configuration Render : build command, publish directory et démarrage du serveur.
+- [x] Vérifier le port dynamique Render, les assets publics et les variables d’environnement requises.
+- [x] Documenter les paramètres Render et valider le build de production avant publication du checkpoint.
