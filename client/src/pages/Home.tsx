@@ -9,7 +9,7 @@ import { ArrowLeft, ArrowRight, ArrowUpRight, ChevronDown, Menu, Pause, Play, Se
 import { trpc } from "@/lib/trpc";
 
 const heroImage = "/assets/kaba/hero-dakar.webp";
-const heroVideo = "/manus-storage/villa-background_36b1d197.mp4";
+const heroVideo = "https://res.cloudinary.com/kabadigital/video/upload/v1787401968/kaba/hero/fpbtt8zphqkl5xxnb13h.mp4";
 const monogram = "/assets/kaba/icon-kaba.webp";
 const headerLogo = "/assets/kaba/header-kaba-transparent.webp";
 
@@ -123,9 +123,12 @@ export default function Home() {
         gsap.utils.toArray<HTMLElement>(".search-band, .selection-section, .approach-section, .services-section, .contact-section").forEach((section) => {
           gsap.from(section, { y: 44, autoAlpha: 0, duration: 0.9, ease: "power3.out", scrollTrigger: { trigger: section, start: "top 82%", once: true } });
         });
-        gsap.from(".property-card", { y: 36, autoAlpha: 0, duration: 0.7, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".property-grid", start: "top 78%", once: true } });
-        gsap.from(".service-row", { x: -28, autoAlpha: 0, duration: 0.65, stagger: 0.12, ease: "power3.out", scrollTrigger: { trigger: ".services-list", start: "top 80%", once: true } });
-        gsap.to(".scroll-line", { scaleX: 0.35, transformOrigin: "left center", duration: 1.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
+        const propertyCards = gsap.utils.toArray<HTMLElement>(".property-card");
+        if (propertyCards.length) gsap.from(propertyCards, { y: 36, autoAlpha: 0, duration: 0.7, stagger: 0.1, ease: "power3.out", scrollTrigger: { trigger: ".property-grid", start: "top 78%", once: true } });
+        const serviceRows = gsap.utils.toArray<HTMLElement>(".service-row");
+        if (serviceRows.length) gsap.from(serviceRows, { x: -28, autoAlpha: 0, duration: 0.65, stagger: 0.12, ease: "power3.out", scrollTrigger: { trigger: ".services-list", start: "top 80%", once: true } });
+        const scrollLine = document.querySelector<HTMLElement>(".scroll-line");
+        if (scrollLine) gsap.to(scrollLine, { scaleX: 0.35, transformOrigin: "left center", duration: 1.2, repeat: -1, yoyo: true, ease: "sine.inOut" });
       });
       return () => media.revert();
     }, page);

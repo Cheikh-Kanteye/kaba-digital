@@ -415,3 +415,10 @@
 - [x] Déclarer `OAUTH_SERVER_URL` dans le Blueprint Render et la documentation.
 - [x] Vérifier que l’authentification locale reste le parcours utilisé par l’application.
 - [x] Valider le build et publier la correction de configuration.
+
+## Corrections runtime Render
+
+- [x] Corriger le placeholder analytics `%VITE_ANALYTICS_ENDPOINT%` non remplacé en production.
+- [x] Remplacer la source vidéo hero `/manus-storage` par une URL Cloudinary persistante avec fallback image.
+- [x] Éviter les avertissements GSAP lorsque les cartes ou cibles optionnelles sont absentes.
+- [x] Valider les routes/assets Render, les tests, le build et publier un checkpoint.
