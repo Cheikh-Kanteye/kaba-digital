@@ -459,3 +459,5 @@
 - [ ] Vérifier la grille Home desktop/mobile, le mapping MongoDB, les tests, le build et publier
 
 - [x] Créer un compte utilisateur standard fictif pour tester la connexion et la persistance de session dans Kaba Premium
+
+- [x] Remplacer le document de recette détaillé par un template de grille simple destiné à la saisie du testeur
