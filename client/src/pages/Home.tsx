@@ -7,19 +7,14 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  Bath,
-  BedDouble,
   ChevronDown,
-  Eye,
   Menu,
-  Ruler,
   Search,
   SlidersHorizontal,
   X,
 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import { matchesHomeFilters } from "@/lib/homeFilters";
-import { formatPropertyAge, phoneDigits } from "@/lib/propertyPresentation";
 
 const heroImage = "/manus-storage/villa-hero-poster_5d277896.jpg";
 const heroVideo = "/manus-storage/villa-background_26114bab.mp4";
@@ -80,7 +75,6 @@ export default function Home() {
   const [priceRange, setPriceRange] = useState("Tous les budgets");
   const [mode, setMode] = useState("Tous les modes");
   const [submitted, setSubmitted] = useState(false);
-  const [activeTab, setActiveTab] = useState<"Biens" | "Terrains">("Biens");
   const [showMore, setShowMore] = useState(false);
   const [activeMedia, setActiveMedia] = useState<Record<string, number>>({});
   const publishedQuery = trpc.kaba.publishedProperties.useQuery({});
@@ -122,14 +116,14 @@ export default function Home() {
     () =>
       catalogue.filter(property =>
         matchesHomeFilters(property, {
-          activeTab,
+          activeTab: propertyType === "Un terrain" ? "Terrains" : "Biens",
           mode,
           priceRange,
           propertyType,
           query,
         })
       ),
-    [activeTab, catalogue, mode, priceRange, propertyType, query]
+    [catalogue, mode, priceRange, propertyType, query]
   );
 
   const featuredProperties = showMore
@@ -356,37 +350,6 @@ export default function Home() {
             lumière, leur adresse et ce qu’ils rendent possible.
           </p>
         </div>
-        <div className="home-catalogue-tools">
-          <div className="tabs" role="tablist" aria-label="Type de biens">
-            <button
-              className={activeTab === "Biens" ? "tab active" : "tab"}
-              type="button"
-              onClick={() => {
-                setActiveTab("Biens");
-                setShowMore(false);
-              }}
-            >
-              Biens
-            </button>
-            <button
-              className={activeTab === "Terrains" ? "tab active" : "tab"}
-              type="button"
-              onClick={() => {
-                setActiveTab("Terrains");
-                setShowMore(false);
-              }}
-            >
-              Terrains
-            </button>
-          </div>
-          <div className="catalogue-intro">
-            <div className="section-kicker">
-              <span>04</span>
-              <span>Les adresses remarquées</span>
-            </div>
-            <h2>Biens populaires</h2>
-          </div>
-        </div>
         {publishedQuery.isLoading && (
           <div className="dashboard-empty">La sélection se charge…</div>
         )}
@@ -460,104 +423,17 @@ export default function Home() {
                 <div className="property-details">
                   <div className="property-caption">
                     <span className="property-type">
-                      {property.type} <span>·</span> {property.mode}
+                      {property.type} <span>·</span> {property.location}
                     </span>
                     <span className="property-seal">K / SÉLECTION</span>
                   </div>
-                  <div className="legacy-badges">
-                    {property.isNew && (
-                      <span className="legacy-badge is-new">Nouveau</span>
-                    )}
-                    <span className="legacy-badge">{property.type}</span>
-                  </div>
-                  <h3>{property.title}</h3>
-                  <p className="property-location">{property.location}</p>
-                  {property.description && (
-                    <p className="property-description">
-                      {property.description}
-                    </p>
-                  )}
+                  <a className="property-title-link" href={`/selection#property-${encodeURIComponent(property.id)}`}>
+                    <h3>{property.title}</h3>
+                  </a>
                   <strong className="property-price">{property.price}</strong>
-                  <div className="legacy-property-stats">
-                    {property.bedrooms !== undefined && (
-                      <span>
-                        <BedDouble size={14} aria-hidden="true" />{" "}
-                        {property.bedrooms} ch.
-                      </span>
-                    )}
-                    {property.bathrooms !== undefined && (
-                      <span>
-                        <Bath size={14} aria-hidden="true" />{" "}
-                        {property.bathrooms} sdb.
-                      </span>
-                    )}
-                    {property.kitchens !== undefined && (
-                      <span>Cuisine {property.kitchens}</span>
-                    )}
-                    {property.surface && (
-                      <span>
-                        <Ruler size={14} aria-hidden="true" />{" "}
-                        {property.surface}
-                      </span>
-                    )}
-                    <span>
-                      <Eye size={14} aria-hidden="true" /> {property.views ?? 0}{" "}
-                      vues
-                    </span>
-                    <span className="property-age">
-                      {formatPropertyAge(
-                        property.listedAt ?? property.createdAt
-                      )}
-                    </span>
-                  </div>
-                  <div className="legacy-owner">
-                    <div className="legacy-owner-identity">
-                      {property.owner?.avatarUrl ? (
-                        <img
-                          src={property.owner.avatarUrl}
-                          alt=""
-                          className="legacy-owner-avatar"
-                        />
-                      ) : (
-                        <span
-                          className="legacy-owner-avatar"
-                          aria-hidden="true"
-                        >
-                          {(property.owner?.name || "K")
-                            .slice(0, 1)
-                            .toUpperCase()}
-                        </span>
-                      )}
-                      <span className="legacy-owner-copy">
-                        <strong>{property.owner?.name || "Équipe Kaba"}</strong>
-                        <span>
-                          {property.owner?.profile || "Professionnel Kaba"}
-                        </span>
-                        {property.owner?.phone && (
-                          <small>{property.owner.phone}</small>
-                        )}
-                      </span>
-                    </div>
-                    <div className="legacy-owner-actions">
-                      <a
-                        className="card-contact"
-                        href={`/selection#property-${encodeURIComponent(property.id)}`}
-                      >
-                        Voir la fiche <ArrowUpRight size={14} />
-                      </a>
-                      {(property.owner?.whatsapp || property.owner?.phone) && (
-                        <a
-                          className="card-contact card-contact-icon"
-                          href={`https://wa.me/${phoneDigits(property.owner?.whatsapp || property.owner?.phone)}`}
-                          target="_blank"
-                          rel="noreferrer"
-                          aria-label={`Contacter ${property.owner.name || "le professionnel"} sur WhatsApp`}
-                        >
-                          WhatsApp
-                        </a>
-                      )}
-                    </div>
-                  </div>
+                  <p className="property-media-note">
+                    {property.images.length} image{property.images.length > 1 ? "s" : ""} · {property.video ? "1 film de lieu" : "Pas de film"}
+                  </p>
                 </div>
               </article>
             );

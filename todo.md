@@ -450,3 +450,12 @@
 - [x] Garantir deux cartes par ligne sur mobile et trois par ligne sur desktop sans débordement
 - [x] Écrire ou mettre à jour les tests liés au mapping et aux filtres des cartes
 - [x] Vérifier les captures, le build, les tests et créer un checkpoint
+
+## Correction cartes Home selon capture fournie
+
+- [ ] Retirer du Home le footer legacy sombre et les badges internes qui ne figurent pas dans la carte de référence
+- [ ] Reproduire la carte éditoriale Home : média, badge Sélection Kaba, numéro, compteur, meta, titre, prix et note média
+- [ ] Garder les informations legacy complètes dans `/selection` et la fiche détail
+- [ ] Vérifier la grille Home desktop/mobile, le mapping MongoDB, les tests, le build et publier
+
+- [x] Créer un compte utilisateur standard fictif pour tester la connexion et la persistance de session dans Kaba Premium
