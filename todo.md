@@ -183,7 +183,6 @@
 - [x] Ajouter des tests Vitest ciblant les procédures Kaba principales.
 - [x] Revalider la sécurité, le build et le checkpoint final.
 
-
 - [x] Afficher les erreurs d’édition et de suppression dans le dashboard.
 - [x] Conditionner l’état vide de la sélection à l’absence de chargement ou d’erreur.
 
@@ -422,3 +421,32 @@
 - [x] Remplacer la source vidéo hero `/manus-storage` par une URL Cloudinary persistante avec fallback image.
 - [x] Éviter les avertissements GSAP lorsque les cartes ou cibles optionnelles sont absentes.
 - [x] Valider les routes/assets Render, les tests, le build et publier un checkpoint.
+
+## Correction du périmètre de migration
+
+- [ ] Auditer le dossier Kaba réel sélectionné sur le poste utilisateur, et non les dépôts Stacbase précédemment inspectés.
+- [ ] Cartographier sa stack, ses fonctionnalités, ses données, ses permissions et ses consignes locales.
+- [ ] Reprendre la migration de la maquette uniquement après confirmation de cette base réelle.
+
+## Reproduction exacte de la maquette depuis le projet public Kaba
+
+- [x] Remplacer la composition actuelle de l’accueil React par le rythme ivoire de la maquette statique
+- [x] Corriger le header React pour qu’il reste contenu dans la largeur sans dépassement
+- [x] Afficher la vidéo hero Cloudinary avec poster et overlay lumineux conformes
+- [x] Reproduire les espaces, la recherche compacte et les sections éditoriales de la maquette
+- [x] Refaire le markup et le style des cartes avec les données MongoDB réelles
+- [x] Utiliser les logos exportés et DM Serif Display/Manrope sur l’accueil React
+- [x] Vérifier desktop, mobile, build et tests après la transposition
+- [x] Corriger le littéral regex invalide du script analytics dans main.tsx et revalider le démarrage Vite
+
+- [x] Garantir que la page La sélection affiche son contenu immédiatement et ne génère pas d’avertissements GSAP sur une liste encore vide
+
+## Fusion éditoriale des cartes legacy
+
+- [x] Reproduire l’espacement de la section sélection de la maquette et aligner les titres, compteurs et filtres
+- [x] Fusionner dans chaque carte les infos legacy : lieu, mode, vues, ancienneté, surface ou pièces et salles de bain
+- [x] Ajouter le footer sombre agent avec nom, rôle, téléphone, contact et WhatsApp quand disponible
+- [x] Conserver l’accès à la fiche détail depuis chaque carte malgré l’affichage complet inline
+- [x] Garantir deux cartes par ligne sur mobile et trois par ligne sur desktop sans débordement
+- [x] Écrire ou mettre à jour les tests liés au mapping et aux filtres des cartes
+- [x] Vérifier les captures, le build, les tests et créer un checkpoint

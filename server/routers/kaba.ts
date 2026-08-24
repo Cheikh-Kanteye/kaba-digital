@@ -2,7 +2,11 @@ import { TRPCError } from "@trpc/server";
 import { nanoid } from "nanoid";
 import { z } from "zod";
 import { protectedProcedure, publicProcedure, router } from "../_core/trpc";
-import { getKabaCollections, type KabaInquiryDocument, type KabaPropertyDocument } from "../mongodbCollections";
+import {
+  getKabaCollections,
+  type KabaInquiryDocument,
+  type KabaPropertyDocument,
+} from "../mongodbCollections";
 import { uploadToCloudinary } from "../cloudinary";
 
 const propertyType = z.enum(["Maison", "Villa", "Appartement", "Terrain"]);
@@ -32,6 +36,7 @@ const propertyInput = z.object({
   isNew: z.boolean().optional(),
   bedrooms: z.number().int().nonnegative().max(99).optional(),
   bathrooms: z.number().int().nonnegative().max(99).optional(),
+  kitchens: z.number().int().nonnegative().max(99).optional(),
   surface: z.string().trim().max(40).optional(),
   status: propertyStatus.default("draft"),
 });
@@ -43,42 +48,101 @@ export const kabaRouter = router({
     me: protectedProcedure.query(async ({ ctx }) => {
       const { users } = await getKabaCollections();
       const openId = String(ctx.user.openId);
-      const existing = await users.findOne({ openId }, { projection: { _id: 0 } });
+      const existing = await users.findOne(
+        { openId },
+        { projection: { _id: 0 } }
+      );
       if (existing) return existing;
       const now = new Date();
-      const profile = { openId, email: ctx.user.email ?? undefined, name: ctx.user.name ?? undefined, createdAt: now, updatedAt: now };
-      await users.updateOne({ openId }, { $setOnInsert: profile }, { upsert: true });
+      const profile = {
+        openId,
+        email: ctx.user.email ?? undefined,
+        name: ctx.user.name ?? undefined,
+        createdAt: now,
+        updatedAt: now,
+      };
+      await users.updateOne(
+        { openId },
+        { $setOnInsert: profile },
+        { upsert: true }
+      );
       return profile;
     }),
-    update: protectedProcedure.input(z.object({
-      name: z.string().trim().min(2).max(120).optional(),
-      profile: z.enum(["Agent immobilier", "Courtier"]).optional(),
-      phone: z.string().trim().max(30).optional(),
-      city: z.string().trim().max(100).optional(),
-      rcNumber: z.string().trim().max(80).optional(),
-      ninea: z.string().trim().max(80).optional(),
-      agencyAddress: z.string().trim().max(180).optional(),
-    })).mutation(async ({ ctx, input }) => {
-      const { users } = await getKabaCollections();
-      const now = new Date();
-      await users.updateOne({ openId: String(ctx.user.openId) }, { $set: { ...input, email: ctx.user.email ?? undefined, updatedAt: now }, $setOnInsert: { createdAt: now } }, { upsert: true });
-      return { success: true } as const;
+    update: protectedProcedure
+      .input(
+        z.object({
+          name: z.string().trim().min(2).max(120).optional(),
+          profile: z.enum(["Agent immobilier", "Courtier"]).optional(),
+          phone: z.string().trim().max(30).optional(),
+          city: z.string().trim().max(100).optional(),
+          rcNumber: z.string().trim().max(80).optional(),
+          ninea: z.string().trim().max(80).optional(),
+          agencyAddress: z.string().trim().max(180).optional(),
+        })
+      )
+      .mutation(async ({ ctx, input }) => {
+        const { users } = await getKabaCollections();
+        const now = new Date();
+        await users.updateOne(
+          { openId: String(ctx.user.openId) },
+          {
+            $set: {
+              ...input,
+              email: ctx.user.email ?? undefined,
+              updatedAt: now,
+            },
+            $setOnInsert: { createdAt: now },
+          },
+          { upsert: true }
+        );
+        return { success: true } as const;
+      }),
+  }),
+  uploadMedia: protectedProcedure
+    .input(
+      z.object({
+        filename: z.string().trim().min(1).max(180),
+        mimeType: z.string().regex(/^(image|video)\//),
+        data: z.string().min(1).max(30_000_000),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const base64 = input.data.includes(",")
+        ? input.data.slice(input.data.indexOf(",") + 1)
+        : input.data;
+      const buffer = Buffer.from(base64, "base64");
+      if (buffer.byteLength > 20 * 1024 * 1024)
+        throw new TRPCError({
+          code: "PAYLOAD_TOO_LARGE",
+          message: "Le fichier ne doit pas dépasser 20 Mo.",
+        });
+      const uploaded = await uploadToCloudinary({
+        buffer,
+        filename: input.filename,
+        mimeType: input.mimeType,
+        folder: `kaba/properties/${String(ctx.user.id)}`,
+      });
+      return {
+        kind: uploaded.resourceType,
+        url: uploaded.secureUrl,
+        publicId: uploaded.publicId,
+        format: uploaded.format,
+        bytes: uploaded.bytes,
+        width: uploaded.width,
+        height: uploaded.height,
+        duration: uploaded.duration,
+      };
     }),
-  }),
-  uploadMedia: protectedProcedure.input(z.object({
-    filename: z.string().trim().min(1).max(180),
-    mimeType: z.string().regex(/^(image|video)\//),
-    data: z.string().min(1).max(30_000_000),
-  })).mutation(async ({ ctx, input }) => {
-    const base64 = input.data.includes(",") ? input.data.slice(input.data.indexOf(",") + 1) : input.data;
-    const buffer = Buffer.from(base64, "base64");
-    if (buffer.byteLength > 20 * 1024 * 1024) throw new TRPCError({ code: "PAYLOAD_TOO_LARGE", message: "Le fichier ne doit pas dépasser 20 Mo." });
-    const uploaded = await uploadToCloudinary({ buffer, filename: input.filename, mimeType: input.mimeType, folder: `kaba/properties/${String(ctx.user.id)}` });
-    return { kind: uploaded.resourceType, url: uploaded.secureUrl, publicId: uploaded.publicId, format: uploaded.format, bytes: uploaded.bytes, width: uploaded.width, height: uploaded.height, duration: uploaded.duration };
-  }),
 
   publishedProperties: publicProcedure
-    .input(z.object({ mode: propertyMode.optional(), type: propertyType.optional() }).optional())
+    .input(
+      z
+        .object({
+          mode: propertyMode.optional(),
+          type: propertyType.optional(),
+        })
+        .optional()
+    )
     .query(async ({ input }) => {
       const { properties } = await getKabaCollections();
       const filter = {
@@ -86,19 +150,46 @@ export const kabaRouter = router({
         ...(input?.mode ? { mode: input.mode } : {}),
         ...(input?.type ? { type: input.type } : {}),
       };
-      return properties.find(filter, { projection: propertyProjection }).sort({ updatedAt: -1 }).limit(60).toArray();
+      return properties
+        .find(filter, { projection: propertyProjection })
+        .sort({ updatedAt: -1 })
+        .limit(60)
+        .toArray();
     }),
 
   ownerProperties: protectedProcedure.query(async ({ ctx }) => {
     const { properties } = await getKabaCollections();
-    return properties.find({ ownerId: String(ctx.user.id) }, { projection: propertyProjection }).sort({ updatedAt: -1 }).limit(100).toArray();
+    return properties
+      .find(
+        { ownerId: String(ctx.user.id) },
+        { projection: propertyProjection }
+      )
+      .sort({ updatedAt: -1 })
+      .limit(100)
+      .toArray();
   }),
 
-  createProperty: protectedProcedure.input(propertyInput).mutation(async ({ ctx, input }) => {
-    const { properties } = await getKabaCollections();
+  createProperty: protectedProcedure
+    .input(propertyInput)
+    .mutation(async ({ ctx, input }) => {
+      const { properties } = await getKabaCollections();
       const now = new Date();
       const ownerId = String(ctx.user.id);
-      const owner = await getKabaCollections().then(({ users }) => users.findOne({ openId: ownerId }, { projection: { _id: 0, name: 1, profile: 1, phone: 1, avatarUrl: 1 } }));
+      const owner = await getKabaCollections().then(({ users }) =>
+        users.findOne(
+          { openId: ownerId },
+          {
+            projection: {
+              _id: 0,
+              name: 1,
+              profile: 1,
+              phone: 1,
+              whatsapp: 1,
+              avatarUrl: 1,
+            },
+          }
+        )
+      );
       const property: KabaPropertyDocument = {
         id: nanoid(12),
         ownerId,
@@ -112,72 +203,136 @@ export const kabaRouter = router({
         views: 0,
         bedrooms: input.bedrooms,
         bathrooms: input.bathrooms,
+        kitchens: input.kitchens,
         surface: input.surface,
         listedAt: now,
-        ownerSnapshot: { name: owner?.name || ctx.user.name || ctx.user.email || undefined, profile: owner?.profile, phone: owner?.phone },
+        ownerSnapshot: {
+          name: owner?.name || ctx.user.name || ctx.user.email || undefined,
+          profile: owner?.profile,
+          phone: owner?.phone,
+          whatsapp: owner?.whatsapp,
+          avatarUrl: owner?.avatarUrl,
+        },
         media: input.media,
         status: input.status,
         createdAt: now,
         updatedAt: now,
       };
-    await properties.insertOne(property);
-    return { id: property.id, property };
-  }),
+      await properties.insertOne(property);
+      return { id: property.id, property };
+    }),
 
   updateProperty: protectedProcedure
-    .input(z.object({ id: z.string().min(1), changes: propertyInput.partial() }))
+    .input(
+      z.object({ id: z.string().min(1), changes: propertyInput.partial() })
+    )
     .mutation(async ({ ctx, input }) => {
       const { properties } = await getKabaCollections();
       const update = { ...input.changes, updatedAt: new Date() };
-      const result = await properties.updateOne({ id: input.id, ownerId: String(ctx.user.id) }, { $set: update });
-      if (result.matchedCount === 0) throw new TRPCError({ code: "NOT_FOUND", message: "Bien introuvable" });
+      const result = await properties.updateOne(
+        { id: input.id, ownerId: String(ctx.user.id) },
+        { $set: update }
+      );
+      if (result.matchedCount === 0)
+        throw new TRPCError({ code: "NOT_FOUND", message: "Bien introuvable" });
       return { success: true } as const;
     }),
 
-  publishProperty: protectedProcedure.input(z.object({ id: z.string().min(1) })).mutation(async ({ ctx, input }) => {
-    const { properties } = await getKabaCollections();
-    const result = await properties.updateOne({ id: input.id, ownerId: String(ctx.user.id) }, { $set: { status: "published", updatedAt: new Date() } });
-    if (result.matchedCount === 0) throw new TRPCError({ code: "NOT_FOUND", message: "Bien introuvable" });
-    return { success: true } as const;
-  }),
+  publishProperty: protectedProcedure
+    .input(z.object({ id: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      const { properties } = await getKabaCollections();
+      const result = await properties.updateOne(
+        { id: input.id, ownerId: String(ctx.user.id) },
+        { $set: { status: "published", updatedAt: new Date() } }
+      );
+      if (result.matchedCount === 0)
+        throw new TRPCError({ code: "NOT_FOUND", message: "Bien introuvable" });
+      return { success: true } as const;
+    }),
 
-  deleteProperty: protectedProcedure.input(z.object({ id: z.string().min(1) })).mutation(async ({ ctx, input }) => {
-    const { properties } = await getKabaCollections();
-    const result = await properties.deleteOne({ id: input.id, ownerId: String(ctx.user.id) });
-    if (result.deletedCount === 0) throw new TRPCError({ code: "NOT_FOUND", message: "Bien introuvable" });
-    return { success: true } as const;
-  }),
+  deleteProperty: protectedProcedure
+    .input(z.object({ id: z.string().min(1) }))
+    .mutation(async ({ ctx, input }) => {
+      const { properties } = await getKabaCollections();
+      const result = await properties.deleteOne({
+        id: input.id,
+        ownerId: String(ctx.user.id),
+      });
+      if (result.deletedCount === 0)
+        throw new TRPCError({ code: "NOT_FOUND", message: "Bien introuvable" });
+      return { success: true } as const;
+    }),
 
-  createInquiry: publicProcedure.input(z.object({
-    propertyId: z.string().min(1),
-    senderName: z.string().trim().min(2).max(100),
-    senderEmail: z.string().email().optional(),
-    senderPhone: z.string().trim().max(30).optional(),
-    message: z.string().trim().max(1200).optional(),
-  })).mutation(async ({ input }) => {
-    const { inquiries, properties } = await getKabaCollections();
-    const propertyExists = await properties.findOne({ id: input.propertyId, status: "published" }, { projection: { id: 1 } });
-    if (!propertyExists) throw new TRPCError({ code: "NOT_FOUND", message: "Bien introuvable" });
-    const now = new Date();
-    const inquiry: KabaInquiryDocument = { id: nanoid(12), ...input, status: "new", createdAt: now, updatedAt: now };
-    const result = await inquiries.insertOne(inquiry);
-    return { id: inquiry.id };
-  }),
+  createInquiry: publicProcedure
+    .input(
+      z.object({
+        propertyId: z.string().min(1),
+        senderName: z.string().trim().min(2).max(100),
+        senderEmail: z.string().email().optional(),
+        senderPhone: z.string().trim().max(30).optional(),
+        message: z.string().trim().max(1200).optional(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      const { inquiries, properties } = await getKabaCollections();
+      const propertyExists = await properties.findOne(
+        { id: input.propertyId, status: "published" },
+        { projection: { id: 1 } }
+      );
+      if (!propertyExists)
+        throw new TRPCError({ code: "NOT_FOUND", message: "Bien introuvable" });
+      const now = new Date();
+      const inquiry: KabaInquiryDocument = {
+        id: nanoid(12),
+        ...input,
+        status: "new",
+        createdAt: now,
+        updatedAt: now,
+      };
+      const result = await inquiries.insertOne(inquiry);
+      return { id: inquiry.id };
+    }),
 
-  updateInquiryStatus: protectedProcedure.input(z.object({ id: z.string().min(1), status: z.enum(["new", "contacted", "closed"]) })).mutation(async ({ ctx, input }) => {
-    const { inquiries, properties } = await getKabaCollections();
-    const owned = await properties.find({ ownerId: String(ctx.user.id) }, { projection: { id: 1 } }).toArray();
-    const propertyIds = owned.map((property) => property.id);
-    const result = await inquiries.updateOne({ id: input.id, propertyId: { $in: propertyIds } }, { $set: { status: input.status, updatedAt: new Date() } });
-    if (result.matchedCount === 0) throw new TRPCError({ code: "NOT_FOUND", message: "Demande introuvable" });
-    return { success: true } as const;
-  }),
+  updateInquiryStatus: protectedProcedure
+    .input(
+      z.object({
+        id: z.string().min(1),
+        status: z.enum(["new", "contacted", "closed"]),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { inquiries, properties } = await getKabaCollections();
+      const owned = await properties
+        .find({ ownerId: String(ctx.user.id) }, { projection: { id: 1 } })
+        .toArray();
+      const propertyIds = owned.map(property => property.id);
+      const result = await inquiries.updateOne(
+        { id: input.id, propertyId: { $in: propertyIds } },
+        { $set: { status: input.status, updatedAt: new Date() } }
+      );
+      if (result.matchedCount === 0)
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Demande introuvable",
+        });
+      return { success: true } as const;
+    }),
 
   ownerInquiries: protectedProcedure.query(async ({ ctx }) => {
     const { inquiries, properties } = await getKabaCollections();
-    const owned = await properties.find({ ownerId: String(ctx.user.id) }, { projection: { id: 1 } }).toArray();
-    const propertyIds = owned.map((property) => property.id);
+    const owned = await properties
+      .find({ ownerId: String(ctx.user.id) }, { projection: { id: 1 } })
+      .toArray();
+    const propertyIds = owned.map(property => property.id);
     if (propertyIds.length === 0) return [];
-    return inquiries.find({ propertyId: { $in: propertyIds } }, { projection: propertyProjection }).sort({ createdAt: -1 }).limit(100).toArray();
+    return inquiries
+      .find(
+        { propertyId: { $in: propertyIds } },
+        { projection: propertyProjection }
+      )
+      .sort({ createdAt: -1 })
+      .limit(100)
+      .toArray();
   }),
 });

@@ -7,7 +7,8 @@ export const MONGODB_COLLECTIONS = {
   inquiries: "inquiries",
 } as const;
 
-export type MongoCollectionName = (typeof MONGODB_COLLECTIONS)[keyof typeof MONGODB_COLLECTIONS];
+export type MongoCollectionName =
+  (typeof MONGODB_COLLECTIONS)[keyof typeof MONGODB_COLLECTIONS];
 
 export type KabaUserDocument = {
   openId?: string;
@@ -15,6 +16,8 @@ export type KabaUserDocument = {
   name?: string;
   profile?: "Agent immobilier" | "Courtier";
   phone?: string;
+  whatsapp?: string;
+  avatarUrl?: string;
   city?: string;
   rcNumber?: string;
   ninea?: string;
@@ -39,12 +42,14 @@ export type KabaPropertyDocument = {
   views?: number;
   bedrooms?: number;
   bathrooms?: number;
+  kitchens?: number;
   surface?: string;
   listedAt?: Date;
   ownerSnapshot?: {
     name?: string;
     profile?: "Agent immobilier" | "Courtier";
     phone?: string;
+    whatsapp?: string;
     avatarUrl?: string;
   };
   media: Array<{
@@ -79,8 +84,12 @@ export async function getKabaCollections(db?: Db) {
   const database = db ?? (await getMongoDb());
   return {
     users: database.collection<KabaUserDocument>(MONGODB_COLLECTIONS.users),
-    properties: database.collection<KabaPropertyDocument>(MONGODB_COLLECTIONS.properties),
-    inquiries: database.collection<KabaInquiryDocument>(MONGODB_COLLECTIONS.inquiries),
+    properties: database.collection<KabaPropertyDocument>(
+      MONGODB_COLLECTIONS.properties
+    ),
+    inquiries: database.collection<KabaInquiryDocument>(
+      MONGODB_COLLECTIONS.inquiries
+    ),
   };
 }
 
