@@ -424,9 +424,9 @@
 
 ## Correction du périmètre de migration
 
-- [ ] Auditer le dossier Kaba réel sélectionné sur le poste utilisateur, et non les dépôts Stacbase précédemment inspectés.
-- [ ] Cartographier sa stack, ses fonctionnalités, ses données, ses permissions et ses consignes locales.
-- [ ] Reprendre la migration de la maquette uniquement après confirmation de cette base réelle.
+- [x] Auditer le dossier Kaba réel sélectionné sur le poste utilisateur, et non les dépôts Stacbase précédemment inspectés.
+- [x] Cartographier sa stack, ses fonctionnalités, ses données, ses permissions et ses consignes locales.
+- [x] Reprendre la migration de la maquette uniquement après confirmation de cette base réelle.
 
 ## Reproduction exacte de la maquette depuis le projet public Kaba
 
