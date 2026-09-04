@@ -9,6 +9,7 @@ import Selection from "./pages/Selection";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
+import Jobs from "./pages/Jobs";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -16,6 +17,7 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/selection"} component={Selection} />
+      <Route path={"/emplois"} component={Jobs} />
       <Route path={"/register"} component={() => <Auth mode="register" />} />
       <Route path={"/login"} component={() => <Auth mode="login" />} />
       <Route path={"/dashboard"} component={Dashboard} />

@@ -180,6 +180,9 @@ export default function Home() {
           <a href="#services" onClick={() => setMenuOpen(false)}>
             Services
           </a>
+          <a href="/emplois" onClick={() => setMenuOpen(false)}>
+            Emplois
+          </a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>
             Parlons-nous
           </a>
@@ -427,12 +430,17 @@ export default function Home() {
                     </span>
                     <span className="property-seal">K / SÉLECTION</span>
                   </div>
-                  <a className="property-title-link" href={`/selection#property-${encodeURIComponent(property.id)}`}>
+                  <a
+                    className="property-title-link"
+                    href={`/selection#property-${encodeURIComponent(property.id)}`}
+                  >
                     <h3>{property.title}</h3>
                   </a>
                   <strong className="property-price">{property.price}</strong>
                   <p className="property-media-note">
-                    {property.images.length} image{property.images.length > 1 ? "s" : ""} · {property.video ? "1 film de lieu" : "Pas de film"}
+                    {property.images.length} image
+                    {property.images.length > 1 ? "s" : ""} ·{" "}
+                    {property.video ? "1 film de lieu" : "Pas de film"}
                   </p>
                 </div>
               </article>
@@ -563,6 +571,7 @@ export default function Home() {
           <a href="#selection">La sélection</a>
           <a href="#approche">Notre approche</a>
           <a href="#services">Services</a>
+          <a href="/emplois">Emplois</a>
         </div>
         <div className="footer-column">
           <p className="footer-label">Contact</p>
