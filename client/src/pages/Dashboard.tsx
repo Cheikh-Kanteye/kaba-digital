@@ -15,7 +15,7 @@ const menu = [
 ];
 
 export default function Dashboard() {
-  const [active, setActive] = useState("Vue d’ensemble");
+  const [active, setActive] = useState(() => (window.location.hash === "#biens" ? "Mes biens" : "Vue d’ensemble"));
   const [menuOpen, setMenuOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const { user, loading: authLoading } = useAuth();
